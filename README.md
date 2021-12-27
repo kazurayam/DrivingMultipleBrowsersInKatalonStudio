@@ -80,10 +80,11 @@ I made a docker image which is publicly available at Docker Hub :
 
 1.  I will use **Flaskr** at `http://127.0.0.1` as a partner for me to develop a set of test scripts in Katalon Studio.
 
-2.  I will open 2 Chrome browsers. On each, I will visit the Flaskr site and interact with it. I will keep 2 browsers open and operate on them simultaneously.
+2.  My test scripts in Katalon Studio will open 2 Chrome browsers. On each, I will visit the Flaskr site and interact with it. I will keep 2 browsers open and operate on them simultaneously.
 
 3.  On one browser, I will register a user **Alice** and make some posts.
 
 4.  On another browser, I will register another user **Bob** and make some posts.
 
-5.  Alice should be able to read the posts made by Bob. Bob should be able to read the posts made by Alice. My web ui test in Katalon Studio will check this conversation.
+5.  Alice should be able to read the posts made by Bob. Bob should be able to read the posts made by Alice. My test scripts in Katalon Studio will check if this conversation is going well.
+
