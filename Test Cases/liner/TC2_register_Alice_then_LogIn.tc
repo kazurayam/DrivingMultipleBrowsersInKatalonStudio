@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>TC2_register_Alice_then_LogIn</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e3add60a-9b44-4b14-9980-474f58931e6e</testCaseGuid>
+</TestCaseEntity>
