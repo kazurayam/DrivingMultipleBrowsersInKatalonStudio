@@ -1,4 +1,4 @@
-import java.time.LocalDateTime
+import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 import org.openqa.selenium.WebDriver
@@ -26,16 +26,19 @@ class ConfigTest {
 	}
 	
 	static Map<String, Object> credential() {
-		LocalDateTime now = LocalDateTime.now()
-		String timestamp = DateTimeFormatter.ISO_ZONED_DATE_TIME.format(now)
-		Map data = [ 'UN' + timestamp, 'PW' + timestamp ]
+		ZonedDateTime now = ZonedDateTime.now()
+		String timestamp = DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(now)
+		Map data = [
+			'username': 'UN' + timestamp,
+			'password': 'PW' + timestamp
+			]
 		return data
 	}
 	
 	static String config_browser(Map<String, Object> config) {
 		if (!config.containsKey('browser')) {
-			throw new IllegalArgumentException("The config file does nnot contain 'browseer'")
-		} else if (SUPPORTED_BROWSERS.contains(config['browser'])) {
+			throw new IllegalArgumentException("The config file does not contain 'browseer'")
+		} else if (!SUPPORTED_BROWSERS.contains(config['browser'])) {
 			throw new IllegalArgumentException("${config['browser']} is not a supported browser")
 		}
 		return config['browser']
@@ -47,7 +50,7 @@ class ConfigTest {
 	 * @return
 	 */
 	static Integer config_wait_time(Map<String, Object> config) {
-		if (config.contains('wait_time')) {
+		if (config.containsKey('wait_time')) {
 			return config['wait_time']
 		} else {
 			DEFAULT_WAIT_TIME
@@ -57,7 +60,8 @@ class ConfigTest {
 	static WebDriver browser(config_browser, config_wait_time) {
 		WebDriver driver
 		if (config_browser == 'chrome') {
-			driver = new KSWebDriverFactory.Builder(KSDriverTypeName.CHROME_DRIVER).build()
+			KSWebDriverFactory factory = new KSWebDriverFactory.Builder(KSDriverTypeName.CHROME_DRIVER).build()
+			driver = factory.newWebDriver()
 		} else {
 			throw new IllegalArgumentException("${config_browser} is not supported")
 		}

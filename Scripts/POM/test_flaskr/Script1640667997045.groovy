@@ -17,3 +17,26 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+import flaskrpages.auth.LogInPage
+import flaskrpages.auth.RegisterCredentialPage
+import flaskrpages.blog.CreatePostPage
+import flaskrpages.blog.IndexPage
+import flaskrpages.blog.Post
+import flaskrpages.blog.Songs
+import flaskrpages.blog.UpdatePostPage
+
+import java.time.ZonedDateTime
+import org.openqa.selenium.WebDriver
+
+/**
+ * 
+ */
+Map<String, Object> config = ConfigTest.config()
+String config_browser = ConfigTest.config_browser(config)
+Integer config_wait_time = ConfigTest.config_wait_time(config)
+//
+WebDriver driver = ConfigTest.browser(config_browser, config_wait_time)
+Map<String, Object> credential = ConfigTest.credential()
+
+//
+println credential
