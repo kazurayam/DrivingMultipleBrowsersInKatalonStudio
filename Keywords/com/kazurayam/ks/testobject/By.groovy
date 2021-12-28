@@ -28,5 +28,4 @@ public class By {
 		tObj.addProperty('xpath', ConditionType.EQUALS, template.toString())
 		return tObj
 	}
-	
 }
