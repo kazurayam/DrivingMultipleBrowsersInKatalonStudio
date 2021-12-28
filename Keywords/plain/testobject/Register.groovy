@@ -1,10 +1,11 @@
-package my.testobjects
+package plain.testobject
 
+import com.kazurayam.ks.testobject.By
 import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.testobject.TestObject
 
 public class Register {
-	
+
 	static TestObject form_input_username() {
 		return By.xpath("/html/body/section/form/input[@id='username']")
 	}

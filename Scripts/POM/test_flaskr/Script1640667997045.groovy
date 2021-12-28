@@ -35,8 +35,14 @@ Map<String, Object> config = ConfigTest.config()
 String config_browser = ConfigTest.config_browser(config)
 Integer config_wait_time = ConfigTest.config_wait_time(config)
 //
-WebDriver driver = ConfigTest.browser(config_browser, config_wait_time)
+WebDriver browser = ConfigTest.browser(config_browser, config_wait_time)
 Map<String, Object> credential = ConfigTest.credential()
 
 //
 println credential
+
+IndexPage index_page = new IndexPage(browser)
+index_page.load()
+
+
+

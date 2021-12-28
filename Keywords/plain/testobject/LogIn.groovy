@@ -1,5 +1,6 @@
-package my.testobjects
+package plain.testobject
 
+import com.kazurayam.ks.testobject.By
 import com.kms.katalon.core.testobject.ConditionType
 import com.kms.katalon.core.testobject.TestObject
 

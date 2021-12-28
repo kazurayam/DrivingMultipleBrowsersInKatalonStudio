@@ -1,9 +1,9 @@
 import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
-import my.testobjects.LogIn
-import my.testobjects.Nav
-import my.testobjects.Register
+import plain.testobject.LogIn
+import plain.testobject.Nav
+import plain.testobject.Register
 
 String username = 'Alice'
 String password = 'ThisIsNotAPassword'
