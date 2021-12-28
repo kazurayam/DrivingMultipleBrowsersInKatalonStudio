@@ -1,4 +1,4 @@
-package flaskrpages.blog
+package flaskrtest.pages.blog
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase

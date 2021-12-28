@@ -1,4 +1,4 @@
-package flaskrpages.blog
+package flaskrtest.pages.blog
 
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -23,7 +23,7 @@ class IndexPage {
 	/**
 	 * @param index 1,2,3, ...
 	 */
-	static final TestObject POST_BY_INDEX(String index) {
+	static final TestObject POST_BY_INDEX(int index) {
 		return By.xpath("//article[@class='post' and position()=${index}]")
 	}
 

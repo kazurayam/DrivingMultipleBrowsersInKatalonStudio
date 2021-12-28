@@ -28,4 +28,14 @@ public class By {
 		tObj.addProperty('xpath', ConditionType.EQUALS, template.toString())
 		return tObj
 	}
+	
+	static TestObject id(String ID) {
+		return id(UUID.randomUUID().toString(), ID)
+	}
+	
+	static TestObject id(String uniqueId, ID) {
+		TestObject tObj = new TestObject(ID)
+		tObj.addProperty('xpath', ConditionType.EQUALS, "//*[@id='${ID}']")
+		return tObj
+	}
 }

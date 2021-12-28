@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
    <description></description>
-   <name>FlaskrTestsUsingKatalonStudio</name>
+   <name>FlaskrTestInKatalonStudio</name>
    <tag></tag>
    <UUID>607384b6-0412-4722-8f60-f5cb763c50be</UUID>
    <migratedVersion>5.9.0</migratedVersion>
    <pageLoadTimeout>0</pageLoadTimeout>
-   <projectFileLocation>/Users/kazuakiurayama/katalon-workspace/DrivingMultipleBrowsersInKatalonStudio/DrivingMultipleBrowsersInKatalonStudio.prj</projectFileLocation>
+   <projectFileLocation>/Users/kazuakiurayama/katalon-workspace/FlaskrTestInKatalonStudio/FluskrTestInKatalonStudio.prj</projectFileLocation>
    <sourceContent>
       <sourceFolderList>
          <sourceFolderConfiguration>
