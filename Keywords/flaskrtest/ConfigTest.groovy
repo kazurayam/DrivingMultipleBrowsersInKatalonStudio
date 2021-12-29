@@ -24,8 +24,8 @@ import java.time.format.DateTimeFormatter
 
 import org.openqa.selenium.WebDriver
 
-import com.kazurayam.ks.webdriverfactory.KSDriverTypeName
-import com.kazurayam.ks.webdriverfactory.KSWebDriverFactory
+import com.kazurayam.ks.webdriversupport.KSDriverTypeName
+import com.kazurayam.ks.webdriversupport.KSWebDriverFactory
 import com.kms.katalon.core.annotation.AfterTestCase
 import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.annotation.BeforeTestCase
