@@ -48,7 +48,7 @@ Integer config_wait_time = ConfigTest.config_wait_time(config)
 
 // open a browser
 WebDriver browser = ConfigTest.browser(config_browser, config_wait_time)
-browser.manage().window().setSize(new Dimension(512, 640));
+browser.manage().window().setSize(new Dimension(800, 600));
 browser.manage().window().setPosition(new Point(0, 0));
 
 Map<String, Object> credential = ConfigTest.credential()

@@ -5,7 +5,7 @@
 I have a Web Application to test. It is a runninng sample code presented by
 ["Flask Tutorial"](https://flask.palletsprojects.com/en/2.0.x/tutorial/). It is *a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.* I just typed in the sample codes as published without any changes. At first, let me go through the pages to grasp what it is. Later I will describe how to set it up on your own PC.
 
-I open Chrome browser to visit <http://127.0.0.1/> . I see the index page as follows, which has no blog posts submitted yet.
+I open Chrome browser to visit <http://127.0.0.1/> . I find the index page as follows, which has no blog posts submitted yet.
 
 ![1](./docs/images/test_flaskr/1_start_from_here.png)
 
@@ -13,7 +13,7 @@ At first, I need to register a User for me before creating posts. I click the `R
 
 ![2](./docs/images/test_flaskr/2_going_to_register_a_username.png)
 
-I click the `Register` button. I am transferred to the LogIn page.
+I click the `Register` button. Then the user will be registered. I am transferred to the Login page.
 
 ![3](./docs/images/test_flaskr/3_a_username_has_been_registered.png)
 
@@ -21,7 +21,7 @@ I re-type the credential (username and password) that I used to create my User.
 
 ![4](./docs/images/test_flaskr/4_about_to_login.png)
 
-I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged-in the web application.
+I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged into this blog application.
 
 ![5](./docs/images/test_flaskr/5_the_user_have_logged_in.png)
 
@@ -29,7 +29,7 @@ Now I am going to create a new post. I click the `New` link. Then a empty form i
 
 ![6](./docs/images/test_flaskr/6_opened_page_to_create_a_new_post.png)
 
-I type a text into the `title` field, and a text into the `body` field.
+I type texts into the `title` and `body` field.
 
 ![7](./docs/images/test_flaskr/7_has_typed_texts_into_a_post.png)
 

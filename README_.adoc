@@ -5,37 +5,37 @@
 I have a Web Application to test. It is a runninng sample code presented by 
 https://flask.palletsprojects.com/en/2.0.x/tutorial/["Flask Tutorial"]. It is _a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts._ I just typed in the sample codes as published without any changes. At first, let me go through the pages to grasp what it is. Later I will describe how to set it up on your own PC.
 
-I open Chrome browser to visit http://127.0.0.1/ . I see the index page as follows, which has no blog posts submitted yet.
+I open Chrome browser to visit http://127.0.0.1/ . I find the index page as follows, which has no blog posts submitted yet.
 
-image:./docs/images/test_flaskr/1_start_from_here.png[1,512,320]
+image:./docs/images/test_flaskr/1_start_from_here.png[1]
 
 At first, I need to register a User for me before creating posts. I click the `Register` link. Then a form is presented where I am requested to type a credential (username and password pair).
 
-image:./docs/images/test_flaskr/2_going_to_register_a_username.png[2,512,640]
+image:./docs/images/test_flaskr/2_going_to_register_a_username.png[2]
 
-I click the `Register` button. I am transferred to the LogIn page.
+I click the `Register` button. Then the user will be registered. I am transferred to the Login page.
 
-image:./docs/images/test_flaskr/3_a_username_has_been_registered.png[3,512,640]
+image:./docs/images/test_flaskr/3_a_username_has_been_registered.png[3]
 
 I re-type the credential (username and password) that I used to create my User.
 
-image:./docs/images/test_flaskr/4_about_to_login.png[4,512,640]
+image:./docs/images/test_flaskr/4_about_to_login.png[4]
 
-I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged-in the web application.
+I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged into this blog application.
 
-image:./docs/images/test_flaskr/5_the_user_have_logged_in.png[5,512,640]
+image:./docs/images/test_flaskr/5_the_user_have_logged_in.png[5]
 
 Now I am going to create a new post. I click the `New` link. Then a empty form is displayed.
 
-image:./docs/images/test_flaskr/6_opened_page_to_create_a_new_post.png[6,512,640]
+image:./docs/images/test_flaskr/6_opened_page_to_create_a_new_post.png[6]
 
-I type a text into the `title` field, and a text into the `body` field.
+I type texts into the `title` and `body` field.
 
-image:./docs/images/test_flaskr/7_has_typed_texts_into_a_post.png[7,512,640]
+image:./docs/images/test_flaskr/7_has_typed_texts_into_a_post.png[7]
 
 I click the `Save` button. Then I am transferred to the index page. Please find a post has been saved into the Blob system and is now displayed in the list of posts.
 
-image:./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png[8,512,640]
+image:./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png[8]
 
 == Problem to solve
 
