@@ -99,11 +99,12 @@ My script can open 2 browsers by calling `new ChromeDriver()` API. My script can
 
 How I could actually implement a set of Web UI test that targets the "Flaskr" blog system? --- I will show you a code set that runs here. The test code has the following characteristics.
 
-1. I will start with a Test Case in plain-old Katalon Studio style. At first it looks trivial, but soon it gets large and complex as I implement more and more test cases.
-2. I will introduce the [POM (Page Object Model)](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html). POM makes my code set modularized.
-3. Writing tests with POM requires good enough programmig skill. 
+1. I will start with a Test Case in plain-old Katalon Studio style. At first it looks trivial.
+2. The `Flaskr` Web App has several pages (authenticating users, creating/editing/deleting blob posts), which is small in comparison with the real-world Web Apps, but my Test Case in plain-old Katalon Studio style soon gets large and complex as I add more test cases.
+3. I will introduce the [POM (Page Object Model)](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html). POM makes my code set modularized and maintainable.
+4. Writing/understanding tests with POM requires good enough programming skill.
 
-My code set is large and complex. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand. I would describe about the essential points; I would not explain the code line-by-line.
+My code set is large and complex. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand them. I would describe about the essential points. But I would not explain the code in detail line-by-line.
 
 === Target Web App
 
