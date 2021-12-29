@@ -48,7 +48,7 @@ Integer config_wait_time = ConfigTest.config_wait_time(config)
 
 // open a browser
 WebDriver browser = ConfigTest.browser(config_browser, config_wait_time)
-browser.manage().window().setSize(new Dimension(800, 600));
+browser.manage().window().setSize(new Dimension(800, 640));
 browser.manage().window().setPosition(new Point(0, 0));
 
 Map<String, Object> credential = ConfigTest.credential()
@@ -56,7 +56,11 @@ Map<String, Object> credential = ConfigTest.credential()
 
 // prepare a directory to save screenshots
 Path outdir = Paths.get(RunConfiguration.getProjectDir()).resolve("build/tmp/testOutput/test_flaskr")
-outdir.toFile().deleteDir()
+if (Files.exists(outdir)) {
+	outdir.toFile().deleteDir()
+}
+Files.createDirectories(outdir)
+
 
 Song song = Songs.get(0)
 
@@ -124,6 +128,5 @@ browser.quit()
 
 def takeScreenshot(WebDriver browser, Path dir, String name) {
 	DriverFactory.changeWebDriver(browser)
-	Files.createDirectories(dir)
 	WebUI.takeScreenshot(dir.resolve(name + ".png").toString())
 }

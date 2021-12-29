@@ -47,9 +47,80 @@ This test scenario --- testing a web app with 2 browsers simultaneously --- is a
 
 I can point out a problem : Katalon Studio’s `WebUI.openBrowser()` keyword can not open 2 browsers.
 
+I made [Test Cases/analysis/WebUI\_openBrowser\_twice](./Scripts/analysis/WebUI_openBrowser_twice/Script1640778957162.groovy) in Katalon Studio.
+
+    Unresolved directive in README_.adoc - include::Scripts/analysis/WebUI_openBrowser_twice/Script1640778957162.groovy[]
+
+This simple script calls `WebUI.openBrowser()` keyword twice. Will we see 2 windows of browsers opened? --- No. The 1st window opens but is closed by Katalon Studio before the 2nd window opens.
+
+![1st\_browser\_is\_closed](./docs/images/analysis/1st_browser_is_closed_before_2nd.png)
+
+This is the way how the `WebUI.openBrowser()` is designed. You can not open 2 browses using this keyword.
+
 ## Solution
 
+Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , [Selenium WebDriver](https://www.browserstack.com/guide/selenium-webdriver-tutorial) is working. If I write a script that makes an instances of `WebDriver` class by calling `org.openwa.selenium.chrome.ChromeDriver` directly, then I can open a Chrome browser. My script can create 2 instances of `WebDriver` and keep them running. I will have 2 windows of Chrome browser and my test script can talk to them.
+
+However, Katalon’s `WebUI.xxx` keyword do not work with the browser (a `WebDriver` instance) that my script instantiated unless my script informs `WebUI.xxx` keywords of the `WebDriver` instance. Let me show you an experiment.
+
+[Test Cases/analysis/2\_WebUI\_keywords\_do\_not\_know](Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy)
+
+    String chrome_executable_path = DriverFactory.getChromeDriverPath()
+    System.setProperty('webdriver.chrome.driver', chrome_executable_path)
+
+    WebDriver browser = new ChromeDriver()
+    browser.navigate().to('http://127.0.0.1/')
+
+    // WebUI.xxx do not know the WebDriver instance created here
+
+    String windowTitle = WebUI.getWindowTitle()
+    assert "Posts - Flaskr" == windowTitle
+
+This script opens a Chrome browser window by calling `new ChromeDriver()`. But the script does not inform Katalon Studio of the WebDriver instance. Therefore calling `WebUI.getWindowTitle()` keyword fails.
+
+![2 unable to get title](./docs/images/analysis/2_unable_to_get_title.png)
+
+How to fix this error? --- call `DriverFactory.changeWebDriver(WebDriver)`.
+
+[TestCases/analysis/3\_how\_to\_inform\_WeebUUI\_keywords](Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy)
+
+    import org.openqa.selenium.WebDriver
+    import org.openqa.selenium.chrome.ChromeDriver
+
+    import com.kms.katalon.core.webui.driver.DriverFactory
+    import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+    String chrome_executable_path = DriverFactory.getChromeDriverPath()
+    System.setProperty('webdriver.chrome.driver', chrome_executable_path)
+
+    WebDriver browser = new ChromeDriver()
+    browser.navigate().to('http://127.0.0.1/')
+
+    // i can let WebUI.xxx keywords know the WebDriver instance created by my script
+    DriverFactory.changeWebDriver(browser)
+
+    String windowTitle = WebUI.getWindowTitle()
+    assert "Posts - Flaskr" == windowTitle
+
+This code passes.
+
+![capable](./docs/images/analysis/3_capable_to_get_title.png)
+
+Now `WebUI.xxx` keywords can interact with the browser which was created by my script using `new ChromeDriver()` API.
+
+My script can open 2 browsers by calling `new ChromeDriver()` API. My script can call `DriverFactory.changeWebDriver(WebDriver)` API so that `WebUI.xxx` keywords can interact with the browser which was created by my script. These are the magic spell you should need to know.
+
 ## Description
+
+How I could actually implement a set of Web UI test that targets the "Flaskr" blog system? --- I will show you a code set that runs here. The test code has the following characteristics.
+
+1.  I will start with a Test Case in plain-old Katalon Studio style. At first it looks trivial, but soon it gets large and complex as I implement more and more test cases.
+
+2.  I will introduce the \[POM (Page Object Model)\](<https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html>). POM makes my code set modularized.
+
+3.  Writing tests with POM requires good enough programmig skill.
+
+My code set is large and complex. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand. I would describe about the essential points; I would not explain the code line-by-line.
 
 ### Target Web App
 

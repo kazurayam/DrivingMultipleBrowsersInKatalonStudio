@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>1_WebUI_openBrowser_twice</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>d82fa612-95b8-405c-b580-e9e9b246634e</testCaseGuid>
+</TestCaseEntity>
