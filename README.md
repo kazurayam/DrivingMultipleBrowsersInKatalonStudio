@@ -65,9 +65,9 @@ This is the way how the `WebUI.openBrowser()` is designed. You can not open 2 br
 
 ## Solution
 
-Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , [Selenium WebDriver](https://www.browserstack.com/guide/selenium-webdriver-tutorial) is working. If I write a script that makes an instances of `WebDriver` class by calling `org.openwa.selenium.chrome.ChromeDriver` directly, then I can open a Chrome browser. My script can create 2 instances of `WebDriver` and keep them running. I will have 2 windows of Chrome browser and my test script can talk to them.
+Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , [Selenium WebDriver](https://www.browserstack.com/guide/selenium-webdriver-tutorial) is working. If I write a script that makes an instances of `WebDriver` class by calling `org.openwa.selenium.chrome.ChromeDriver` directly, then I can open a Chrome browser. My script can create 2 instances of `WebDriver` and keep them running. I can have 2 windows of Chrome browser and my test script can talk to them via the WebDriver API such as `driver.navigate().to("http://127.0.0.1/")`.
 
-However, Katalon’s `WebUI.xxx` keyword do not work with the browser (a `WebDriver` instance) that my script instantiated unless my script informs `WebUI.xxx` keywords of the `WebDriver` instance. Let me show you an experiment.
+However, Katalon’s `WebUI.xxx` keyword, unless properly configured, do not work with the browser (a `WebDriver` instance) that my script instantiated unless my script informs `WebUI.xxx` keywords of the `WebDriver` instance. Let me show you an experiment.
 
 [Test Cases/analysis/2\_WebUI\_keywords\_do\_not\_know](Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy)
 
@@ -118,19 +118,17 @@ My script can open 2 browsers by calling `new ChromeDriver()` API. My script can
 
 ## Description
 
-How I could actually implement a set of Web UI test that targets the "Flaskr" blog system? --- I will show you a code set that runs here. The test code has the following characteristics.
+How could I actually implement a set of Web UI test that targets the "Flaskr" blog system? --- Here I will show you a code set that runs. The test code has the following characteristics.
 
 1.  I will start with a Test Case in plain-old Katalon Studio style. At first it looks trivial.
 
-2.  The `Flaskr` Web App has several pages (authenticating users, creating/editing/deleting blob posts), which is small in comparison with the real-world Web Apps, but my Test Case in plain-old Katalon Studio style soon gets large and complex as I add more test cases.
+2.  The `Flaskr` Web App has several pages (authenticating users, creating/editing/deleting blob posts), which is small comparing to the real-world Web Apps, but my Test Case in plain-old Katalon Studio style soon gets large and complex as I add more test cases.
 
-3.  I will introduce the \[POM (Page Object Model)\](<https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html>). POM makes my code set modularized and maintainable.
+3.  I will introduce the [POM (Page Object Model)](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html). With the POM concept in mind, I can implement my tests well modularized and maintainable.
 
 4.  Writing/understanding tests with POM requires good enough programming skill.
 
-My code set is large and complex. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand them. I would describe about the essential points. But I would not explain the code in detail line-by-line.
-
-### Target Web App
+My code set is large enough and complex. The target Web App ("Flaskr") deserves it. I could not make it any simpler. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand them without verbose descriptions. I would note some essentials points, but I would not explain the code in too much detail.
 
 ## Envrionment setup
 
