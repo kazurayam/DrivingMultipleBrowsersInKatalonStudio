@@ -2,8 +2,8 @@
 
 ## Background
 
-I am going to use a Web App presented by
-["Flask Tutorial"](https://flask.palletsprojects.com/en/2.0.x/tutorial/). It is *a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.* I just typed in the sample codes as published without any changes.
+I have a Web Application to test. It is the runninng sample code presented by
+["Flask Tutorial"](https://flask.palletsprojects.com/en/2.0.x/tutorial/). It is *a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.* I just typed in the sample codes as published without any changes. At first, let me go through the pages to grasp what it is.
 
 I open Chrome browser to visit <http://127.0.0.1/>
 (I will describe how to setup this web app on your PC later)
