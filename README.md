@@ -47,9 +47,15 @@ This test scenario --- testing a web app with 2 browsers simultaneously --- is a
 
 I can point out a problem : Katalon Studio’s `WebUI.openBrowser()` keyword can not open 2 browsers.
 
-I made [Test Cases/analysis/WebUI\_openBrowser\_twice](./Scripts/analysis/WebUI_openBrowser_twice/Script1640778957162.groovy) in Katalon Studio.
+I made [Test Cases/analysis/WebUI\_openBrowser\_twice](Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy) in Katalon Studio.
 
-    Unresolved directive in README_.adoc - include::Scripts/analysis/WebUI_openBrowser_twice/Script1640778957162.groovy[]
+    import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+    WebUI.openBrowser("http://127.0.0.1/")
+    WebUI.openBrowser("http://127.0.0.1/")
+
+    WebUI.delay(1)
+    WebUI.closeBrowser()
 
 This simple script calls `WebUI.openBrowser()` keyword twice. Will we see 2 windows of browsers opened? --- No. The 1st window opens but is closed by Katalon Studio before the 2nd window opens.
 
