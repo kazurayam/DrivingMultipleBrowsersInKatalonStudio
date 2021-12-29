@@ -1,6 +1,6 @@
 # Driving Multiple Browsers in Katalon Studio
 
-## Problem to solve
+## Background
 
 I am going to use a Web App presented by
 ["Flask Tutorial"](https://flask.palletsprojects.com/en/2.0.x/tutorial/). It is *a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.* I just typed in the sample codes as published without any changes.
@@ -39,6 +39,8 @@ I typed a text into the `title` field, and a text into the `body` field.
 I clicketd the `Save` button. Then I am transferred to the index page. Please find a post has been saved into the Blob system and is displayed in the list of posts.
 
 ![8 the post is found in the list](./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png)
+
+## Problem to solve
 
 You can imagine; we can create 2 or more users. We can send multiple posts to <http://127.0.0.1/> from 2 or more browsers simultaneously.
 
