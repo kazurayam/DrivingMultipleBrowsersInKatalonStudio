@@ -4,6 +4,28 @@
 
 == Solution
 
+== Description
+
+=== Target Web App
+
+https://flask.palletsprojects.com/en/2.0.x/tutorial/[Flask Tutorial]
+
+image:./docs/images/test_flaskr/1_start_from_here.png[]
+
+image:./docs/images/test_flaskr/2_going_to_register_a_username.png[]
+
+image:./docs/images/test_flaskr/3_a_username_has_been_registered.png[]
+
+image:./docs/images/test_flaskr/4_about_to_login.png[]
+
+image:./docs/images/test_flaskr/5_the_user_have_logged_in.png[]
+
+image:./docs/images/test_flaskr/6_opened_page_to_create_a_new_post.png[]
+
+image:./docs/images/test_flaskr/7_has_typed_texts_into_a_post.png[]
+
+image:./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png[]
+
 
 == Envrionment setup
 
