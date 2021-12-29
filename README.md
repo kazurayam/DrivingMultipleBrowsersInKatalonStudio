@@ -1,4 +1,4 @@
-# Driving Multiple Browsers in Katalon Studio
+# Testing a Blog system with 2 Chrome browsers in Katalon Studio
 
 ## Background
 
@@ -44,7 +44,9 @@ I clicketd the `Save` button. Then I am transferred to the index page. Please fi
 
 You can imagine; we can create 2 or more users. We can send multiple posts to <http://127.0.0.1/> from 2 or more browsers simultaneously.
 
-**But how can I do it using Selenium-based Web UI automation tool? How can I do it inn Katalon Studio?**
+**But how can I do it using Selenium-based Web UI automation tool? How can I do it in Katalon Studio?**
+
+### Problem1 : Katalon Studio can not natively open 2 browsers.
 
 ## Solution
 
