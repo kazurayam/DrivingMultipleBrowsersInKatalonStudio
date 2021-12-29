@@ -7,35 +7,35 @@ I have a Web Application to test. It is a runninng sample code presented by
 
 I open Chrome browser to visit <http://127.0.0.1/> . I see the index page as follows, which has no blog posts submitted yet.
 
-![1 start from here](./docs/images/test_flaskr/1_start_from_here.png)
+![1](./docs/images/test_flaskr/1_start_from_here.png)
 
 At first, I need to register a User for me before creating posts. I click the `Register` link. Then a form is presented where I am requested to type a credential (username and password pair).
 
-![2 going to register a username](./docs/images/test_flaskr/2_going_to_register_a_username.png)
+![2](./docs/images/test_flaskr/2_going_to_register_a_username.png)
 
 I click the `Register` button. I am transferred to the LogIn page.
 
-![3 a username has been registered](./docs/images/test_flaskr/3_a_username_has_been_registered.png)
+![3](./docs/images/test_flaskr/3_a_username_has_been_registered.png)
 
 I re-type the credential (username and password) that I used to create my User.
 
-![4 about to login](./docs/images/test_flaskr/4_about_to_login.png)
+![4](./docs/images/test_flaskr/4_about_to_login.png)
 
 I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged-in the web application.
 
-![5 the user have logged in](./docs/images/test_flaskr/5_the_user_have_logged_in.png)
+![5](./docs/images/test_flaskr/5_the_user_have_logged_in.png)
 
 Now I am going to create a new post. I click the `New` link. Then a empty form is displayed.
 
-![6 opened page to create a new post](./docs/images/test_flaskr/6_opened_page_to_create_a_new_post.png)
+![6](./docs/images/test_flaskr/6_opened_page_to_create_a_new_post.png)
 
 I type a text into the `title` field, and a text into the `body` field.
 
-![7 has typed texts into a post](./docs/images/test_flaskr/7_has_typed_texts_into_a_post.png)
+![7](./docs/images/test_flaskr/7_has_typed_texts_into_a_post.png)
 
 I click the `Save` button. Then I am transferred to the index page. Please find a post has been saved into the Blob system and is now displayed in the list of posts.
 
-![8 the post is found in the list](./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png)
+![8](./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png)
 
 ## Problem to solve
 
@@ -43,9 +43,9 @@ You can easily imagine; I can create 2 or more users. So I should be able send m
 
 This test scenario --- testing a web app with 2 browsers simultaneously --- is applicable to practical business. Let me assume I have a EC site which has dual user interface: Customer UI and Administrator UI. When a user submit an order to purchase some product, then an administrator should be able to see the order in the list of outstanding orders. I want to test both of the Customer UI and the Administrator UI. My Web UI test should submit an order in the Customer UI; then my test my test verify if the order is appearing in the Administrator UI. I want my test to simulate this dual-participants' interaction.
 
-**But how can I do it using Selenium-based Web UI automation tool? How can I do it in Katalon Studio?**
+**But how can I do testing a web app with 2 browsers simultaneously in Katalon Studio?**
 
-### Problem1 : Katalon Studio can not natively open 2 browsers.
+I can point out a problem : Katalon Studio’s `WebUI.openBrowser()` keyword can not open 2 browsers.
 
 ## Solution
 
