@@ -41,11 +41,11 @@ image:./docs/images/test_flaskr/8_the_post_is_found_in_the_list.png[8]
 
 You can easily imagine; I can create 2 or more users. So I should be able send multiple posts to http://127.0.0.1/ from 2 or more browsers simultaneously using 2 users each. When a user Alice made a post, then another user Bob should be able to see the post by Alice in an instant. When Bob made a new post, then soon Alice should be able to see the Bob's post.
 
-This test scenario --- testing a web app with 2 browsers simultaneously --- is applicable to practical business. Let me assume I have a EC site which has dual user interface: Customer UI and Administrator UI. When a user submit an order to purchase some product, then an administrator should be able to see the order in the list of outstanding orders. I want to test both of the Customer UI and the Administrator UI. My Web UI test should submit an order in the Customer UI; then my test my test verify if the order is appearing in the Administrator UI. I want my test to simulate this dual-participants' interaction.
+This test scenario --- testing a web app with 2 browsers simultaneously --- is applicable to practical business. Let me assume I have an EC site which has dual user interface: Customer UI and Administrator UI. When a user submit an order to purchase some product, then an administrator should be able to see the order in the list of outstanding orders. I want to test both of the Customer UI and the Administrator UI. My Web UI test should submit an order in the Customer UI; then my test my test verify if the order is appearing in the Administrator UI. I want my test to simulate this dual-participants' interaction.
 
 *But how can I do testing a web app with 2 browsers simultaneously in Katalon Studio?*
 
-I can point out a problem : Katalon Studio's `WebUI.openBrowser()` keyword can not open 2 browsers.
+I can point out a basic problem : Katalon Studio's `WebUI.openBrowser()` keyword can not open 2 browsers.
 
 I made link:Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy[Test Cases/analysis/WebUI_openBrowser_twice] in Katalon Studio.
 
@@ -106,9 +106,9 @@ How could I actually implement a set of Web UI test that targets the "Flaskr" bl
 
 My code set is large enough and complex. The target Web App ("Flaskr") deserves it. I could not make it any simpler. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand them without verbose descriptions. I would note some essentials points, but I would not explain the code in too much detail.
 
-== Envrionment setup
+=== Setting up Envrionment
 
-=== Installing docker command
+==== Installing docker command
 
 I installed `docker` command into my Mac Book Air
 
@@ -131,7 +131,7 @@ Windows users can use "Docker Desktop on Windnows" of course,
 * https://docs.docker.com/desktop/windows/install/
 
 
-=== Starting up HTTP Server App at http://127.0.0.1/
+==== Starting up HTTP Server App at http://127.0.0.1/
 
 I made a temporary directory with any name.
 ```
@@ -166,7 +166,20 @@ I made a docker image which is publicly available at Docker Hub :
 
 * https://hub.docker.com/repository/docker/kazurayam/flaskr-kazurayam
 
-== Web UI Test Scenario
+== Sample codes
+
+=== Test Cases/plain/TC1_open_close
+
+=== Test Cases/plain/TC2_register_Alice_then_LogIn
+
+=== Test Cases/POM/test_flaskr
+
+=== Test Cases/POM/test_flaskr_modularized
+
+=== Test Cases/POM/test_flaskr_final
+
+A Movie is available at ...
+
 
 1. I will use *Flaskr* at `http://127.0.0.1` as a partner for me to develop a set of Web UI test scripts in Katalon Studio.
 
@@ -177,5 +190,3 @@ I made a docker image which is publicly available at Docker Hub :
 4. On another browser, I will register another user *Bob* and make some posts.
 
 5. Alice should be able to read the posts made by Bob. Bob should be able to read the posts made by Alice. My web ui test in Katalon Studio will check this conversation.
-
-== Experiments
