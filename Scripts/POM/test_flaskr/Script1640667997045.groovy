@@ -3,7 +3,8 @@ import org.openqa.selenium.WebDriver
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 import flaskrtest.ConfigTest
-import flaskrtest.Songs
+import flaskrtest.data.Song
+import flaskrtest.data.Songs
 import flaskrtest.pages.auth.LogInPage
 import flaskrtest.pages.auth.RegisterCredentialPage
 import flaskrtest.pages.blog.CreatePostPage
@@ -30,6 +31,7 @@ developed by the pywebapp subproject.
  */
 
 // read the configuration
+
 Map<String, Object> config = ConfigTest.config()
 String config_browser = ConfigTest.config_browser(config)
 Integer config_wait_time = ConfigTest.config_wait_time(config)
@@ -47,7 +49,7 @@ browser.quit()
 /*
  * 
  */
-def step0(WebDriver browser, credential) {
+def step0(WebDriver browser, Map<String, Object> credential) {
 	// let's start playing on the Flaskr web app
 	IndexPage index_page = new IndexPage(browser)
 	index_page.load()
@@ -70,8 +72,6 @@ def step0(WebDriver browser, credential) {
 	LogInPage login_page = new LogInPage(browser)
 	assert login_page.login_button_exists()
 
-	WebUI.delay(1)
-
 	// Login with the added credential
 	// - type credentials and do login
 	login_page.type_username(credential['username'])
@@ -87,11 +87,11 @@ def step0(WebDriver browser, credential) {
 	assert create_post_page.save_button_exists()
 
 	// type title
-	Map<String, String> song = Songs.song(0)
-	String title = song.get('title')  + " --- " + song.get('by')
+	Song song = Songs.get(0)
+	String title = song.title + " --- " + song.by
 	create_post_page.type_title(title)
 	// type body
-	String lyric = song.get('lyric')
+	String lyric = song.lyric
 	create_post_page.type_body(lyric)
 	// save the post
 	create_post_page.do_save()
