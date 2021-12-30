@@ -107,6 +107,7 @@ Now `WebUI.xxx` keywords can interact with the browser which was created by my s
 
 My script can open 2 browsers by calling `new ChromeDriver()` API. My script can call `DriverFactory.changeWebDriver(WebDriver)` API so that `WebUI.xxx` keywords can interact with the browser which was created by my script. These are the magic spell you should need to know.
 
+
 == Solution described
 
 How could I actually implement a set of Web UI test that targets the "Flaskr" blog system? --- Here I will show you a code set that runs. The test code has the following characteristics.
@@ -177,6 +178,18 @@ image:docs/images/flaskr_just_started.png[]
 I made a docker image which is publicly available at Docker Hub :
 
 * https://hub.docker.com/repository/docker/kazurayam/flaskr-kazurayam
+
+=== External Dependencies
+
+In the project's `Drivers` directory you need to download a few jar files.
+
+1. https://github.com/kazurayam/webdriverfactory/releases[webdriverfactory]
+
+2. https://github.com/kazurayam/WebDriverSupport4ks/releases[webdriversupport4ks]
+
+3. https://github.com/kazurayam/junit4ks/releases[junit4ks]
+
+I developed these.
 
 == Sample codes
 
