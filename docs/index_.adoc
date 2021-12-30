@@ -1,4 +1,6 @@
-= Testing a Blog system with 2 Chrome browsers in Katalon Studio
+= Flaskr Test in Katalon Studio
+
+I am going to explain what I have done to test a blog system using 2 windows of Chrome browsers simultaneously. I used Katalon Studio. I employed the design pattern "Page Object Model" (POM). This project is meant to be a sample code for myself in future to develop a large scale test suite.
 
 == Application Under Test at a glance
 
