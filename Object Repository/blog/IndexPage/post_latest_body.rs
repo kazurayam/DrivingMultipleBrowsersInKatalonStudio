@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>latestPost_body</name>
+   <name>post_latest_body</name>
    <tag></tag>
    <elementGuidId>fdbd343d-cf04-4a29-9b67-06a08a669e3a</elementGuidId>
    <selectorCollection>

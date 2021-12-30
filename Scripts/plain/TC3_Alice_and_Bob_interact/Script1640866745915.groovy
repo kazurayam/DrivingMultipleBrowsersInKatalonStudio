@@ -18,11 +18,11 @@ System.setProperty('webdriver.chrome.driver', chrome_executable_path)
 
 // open a Chome browser for Alice
 WebDriver browser0 = new ChromeDriver()
-layoutWindow(browser0, new Dimension(720, 640), new Point(0, 0))
+layoutWindow(browser0, new Dimension(720, 800), new Point(0, 0))
 
 // open a Chrome browser for Bob
 WebDriver browser1 = new ChromeDriver()
-layoutWindow(browser1, new Dimension(720, 640), new Point(720, 0))
+layoutWindow(browser1, new Dimension(720, 800), new Point(720, 0))
 
 // Alice logs in
 login(browser0, "Alice", "AliceInTheWonderLand")
@@ -30,15 +30,20 @@ login(browser0, "Alice", "AliceInTheWonderLand")
 // Bob logs in
 login(browser1, "Bob", "LikeARollingStone")
 
+Song song_of_miyuki = Songs.get(0)
+Song song_of_queen  = Songs.get(1)
+
 // Alice makes a post
-post(browser0, "Alice", Songs.get(0))
+post(browser0, "Alice", song_of_miyuki)
 
 // Bob makes a post
-post(browser1, "Bob", Songs.get(1))
+post(browser1, "Bob", song_of_queen)
 
-// Alice sees Bob's post
+// Alice finds the song that Bob posted
+finds(browser0, "Alice", "Bob", song_of_queen)
 
-// Bob sees Alice's post
+// Bob finds the song that Alice posted
+finds(browser1, "Bob", "Alice", song_of_miyuki)
 
 WebUI.delay(3)
 
@@ -67,7 +72,7 @@ def login(WebDriver browser, String username, String password) {
 	WebUI.click(findTestObject("auth/RegisterCredentialPage/input_Register"))
 	
 	// check if the user is already registered
-	boolean alreadyRegistered = WebUI.waitForElementPresent(findTestObject("auth/RegisterCredentialPage/div_flash"), 3)
+	boolean alreadyRegistered = WebUI.waitForElementPresent(findTestObject("auth/RegisterCredentialPage/div_flash"), 1)
 	if (alreadyRegistered) {
 		KeywordUtil.markWarning("usernamee ${username} is already registered.")
 		// we are still on the Register page
@@ -90,7 +95,6 @@ def login(WebDriver browser, String username, String password) {
 
 def post(WebDriver browser, String username, Song song) {
 	DriverFactory.changeWebDriver(browser)
-	
 	// let's start from the index page
 	browser.navigate().to('http://127.0.0.1/')
 	
@@ -108,12 +112,22 @@ def post(WebDriver browser, String username, Song song) {
 	
 	// now we are on the index page
 	// make sure that the 1st article is the song just posted by username 
-	String title_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/latestPost_title"))
+	String title_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/post_latest_title"))
 	assert title_of_the_latest_post == title
-	String about_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/latestPost_about"))
+	String about_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/post_latest_about"))
 	assert about_of_the_latest_post.contains(username)
-	String body_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/latestPost_body"))
+	String body_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/post_latest_body"))
 	assert body_of_the_latest_post == song.lyric
+}
+
+
+def finds(WebDriver browser, String username, String somebody, Song song) {
+	DriverFactory.changeWebDriver(browser)
+	// let's start from the index page
+	browser.navigate().to('http://127.0.0.1/')
+	// find a post by somebody
+	String title = WebUI.getText(findTestObject("blog/IndexPage/post_by_somebody_title", ["by": somebody]))
+	assert title.contains(song.title)
 }
 
 def layoutWindow(WebDriver browser, Dimension dimension, Point point) {

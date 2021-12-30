@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>latestPost_title</name>
+   <name>post_latest_about</name>
    <tag></tag>
-   <elementGuidId>ecc5ce4f-dad8-4012-8481-47dd116fa67f</elementGuidId>
+   <elementGuidId>9c6d1b40-0ae1-4f95-ae81-30105ef6e6d6</elementGuidId>
    <selectorCollection>
       <entry>
          <key>BASIC</key>
@@ -11,7 +11,7 @@
       </entry>
       <entry>
          <key>XPATH</key>
-         <value>//section[@class='content']/article[@class='post'][1]/header/div/h1</value>
+         <value>//section[@class='content']/article[@class='post'][1]/header/div/div[contains(@class,'about')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
