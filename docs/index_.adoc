@@ -51,7 +51,7 @@ image:./images/test_flaskr/8_the_post_is_found_in_the_list.png[8]
 
 == Problem to solve
 
-You can easily imagine; I can create 2 or more users. So I should be able send multiple posts to http://127.0.0.1/ from 2 or more browsers simultaneously using 2 users each. When a user Alice made a post, then another user Bob should be able to see the post by Alice in an instant. When Bob made a new post, then soon Alice should be able to see the Bob's post.
+You can easily imagine; I can create 2 or more users. So I should be able send multiple posts to http://127.0.0.1/ from 2 or more browsers simultaneously using 2 users recognized by the web app. When a user Alice made a post, then another user Bob should be able to see the post by Alice in an instant. When Bob made a new post, then soon Alice should be able to see the Bob's post.
 
 This test scenario --- testing a web app with 2 browsers simultaneously --- is applicable to practical business. Let me assume I have an EC site which has dual user interface: Customer UI and Administrator UI. When a user submit an order to purchase some product, then an administrator should be able to see the order in the list of outstanding orders. I want to test both of the Customer UI and the Administrator UI. My Web UI test should submit an order in the Customer UI; then my test my test verify if the order is appearing in the Administrator UI. I want my test to simulate this dual-participants' interaction.
 
