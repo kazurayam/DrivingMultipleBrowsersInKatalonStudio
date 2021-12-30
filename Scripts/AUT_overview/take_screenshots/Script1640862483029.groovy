@@ -62,7 +62,7 @@ if (Files.exists(outdir)) {
 Files.createDirectories(outdir)
 
 
-Song song = Songs.get(0)
+Song song = Songs.get(1)
 
 // let's start playing on the Flaskr web app
 IndexPage index_page = new IndexPage(browser)
@@ -106,10 +106,10 @@ CreatePostPage create_post_page = new CreatePostPage(browser)
 assert create_post_page.save_button_exists()
 takeScreenshot(browser, outdir, "6_opened_page_to_create_a_new_post")
 
-// type title
+// type in the title
 String title = song.title + " --- " + song.by
 create_post_page.type_title(title)
-// type body
+// type in the body
 String lyric = song.lyric
 create_post_page.type_body(lyric)
 takeScreenshot(browser, outdir, "7_has_typed_texts_into_a_post")

@@ -9,35 +9,42 @@ import com.kms.katalon.core.util.KeywordUtil
 import com.kms.katalon.core.webui.driver.DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
+import flaskrtest.data.Song
+import flaskrtest.data.Songs
+
 // preparatio for ChromeDriver
 String chrome_executable_path = DriverFactory.getChromeDriverPath()
 System.setProperty('webdriver.chrome.driver', chrome_executable_path)
 
 // open a Chome browser for Alice
-WebDriver browser1 = new ChromeDriver()
-layoutWindow(browser1, new Dimension(720, 640), new Point(0, 0))
-// Alice logs in
-login(browser1, "Alice", "AliceInTheWonderLad")
+WebDriver browser0 = new ChromeDriver()
+layoutWindow(browser0, new Dimension(720, 640), new Point(0, 0))
 
 // open a Chrome browser for Bob
-WebDriver browser2 = new ChromeDriver()
-layoutWindow(browser2, new Dimension(720, 640), new Point(720, 0))
+WebDriver browser1 = new ChromeDriver()
+layoutWindow(browser1, new Dimension(720, 640), new Point(720, 0))
+
+// Alice logs in
+login(browser0, "Alice", "AliceInTheWonderLand")
+
 // Bob logs in
-login(browser2, "Bob", "LikeARollingStone")
+login(browser1, "Bob", "LikeARollingStone")
 
 // Alice makes a post
+post(browser0, "Alice", Songs.get(0))
 
 // Bob makes a post
+post(browser1, "Bob", Songs.get(1))
 
-// Alice likes Bob's post
+// Alice sees Bob's post
 
-// Bob likes Alice's post
+// Bob sees Alice's post
 
 WebUI.delay(3)
 
-// close both browsers
+// close 2 browsers
+browser0.quit()
 browser1.quit()
-browser2.quit()
 
 
 def login(WebDriver browser, String username, String password) {
@@ -76,10 +83,37 @@ def login(WebDriver browser, String username, String password) {
 	WebUI.click(findTestObject("auth/LogInPage/input_Log In"))
 	
 	// now we should be are on the index page
-	// have I successfully logged in?
+	// make sure if he/she has successfully logged in?
 	WebUI.verifyElementPresent(findTestObject("blog/IndexPage/nav_span_username", ["username": username]), 3)
+}
+
+
+def post(WebDriver browser, String username, Song song) {
+	DriverFactory.changeWebDriver(browser)
 	
+	// let's start from the index page
+	browser.navigate().to('http://127.0.0.1/')
 	
+	// we want to navigate to the CreatePost page
+	WebUI.click(findTestObject("blog/IndexPage/a_New"))
+	WebUI.verifyElementPresent(findTestObject("blog/CreatePostPage/button_Save"), 3)
+	
+	// type in the title
+	String title = song.title + " --- " + song.by
+	WebUI.sendKeys(findTestObject("blog/CreatePostPage/input_title"), title)
+	// type in the body
+	WebUI.sendKeys(findTestObject("blog/CreatePostPage/input_body"), song.lyric)
+	// save the post
+	WebUI.click(findTestObject("blog/CreatePostPage/button_Save"))
+	
+	// now we are on the index page
+	// make sure that the 1st article is the song just posted by username 
+	String title_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/latestPost_title"))
+	assert title_of_the_latest_post == title
+	String about_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/latestPost_about"))
+	assert about_of_the_latest_post.contains(username)
+	String body_of_the_latest_post = WebUI.getText(findTestObject("blog/IndexPage/latestPost_body"))
+	assert body_of_the_latest_post == song.lyric
 }
 
 def layoutWindow(WebDriver browser, Dimension dimension, Point point) {

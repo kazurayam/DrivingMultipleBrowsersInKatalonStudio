@@ -9,13 +9,13 @@ import com.kms.katalon.core.webui.driver.DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 public class CreatePostPage {
-	
+
 	static final TestObject TITLE_INPUT = By.id('title')
 	static final TestObject BODY_INPUT  = By.id('body')
 	static final TestObject SAVE_BUTTON = By.xpath('//input[@type="submit" and @value="Save"]')
 
 	private WebDriver browser
-	
+
 	CreatePostPage(WebDriver browser) {
 		this.browser = browser
 	}
