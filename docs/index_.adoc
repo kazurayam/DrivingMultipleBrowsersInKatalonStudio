@@ -1,55 +1,18 @@
 = Flaskr Test in Katalon Studio
 
-Here I am going to explain what I have done to test a blog system using 2 windows of Chrome browsers simultaneously. I used Katalon Studio. I employed the design pattern "Page Object Model" (POM). This project is meant to be [underline]#a set of sample codes for myself to develop a large scale test suite in future#.
+Here I am going to explain what I have done to test a Blog app using 2 browser windows simultaneously. I used Katalon Studio. I wrote my test scripts in 2 ways; one in the typical Katalon Studio style, another using Page Object Model
 
-== Application Under Test at a glance
+This project is meant to be [underline]#a set of sample codes for myself to develop a large scale test suite in future#.
 
-I have a Web Application to test using Selenium WebDriver. It is a runninng sample code presented by 
-https://flask.palletsprojects.com/en/2.0.x/tutorial/["Flask Tutorial"]. It is 
+== Movie for demonstration
 
-____
-a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.
-____
+For those who don't have time, please have a look at the following movie. This shows how my Web UI test works.
 
-I just typed in the sample codes as published without any changes. Later I will describe how to set it up and run on your local PC. Let me go through the screenshots of the web app to grasp what it is.
-
-I open Chrome browser to visit the URL of the Application Under Test: 
-
-* http://127.0.0.1/
-
-I find the index page as follows, which has no blog posts submitted yet.
-
-image:./images/test_flaskr/1_start_from_here.png[1]
-
-At first, I need to register a User for me before creating posts. I click the `Register` link. Then a form is presented where I am requested to type a credential (username and password pair).
-
-image:./images/test_flaskr/2_going_to_register_a_username.png[2]
-
-I click the `Register` button. Then the user will be registered. I am transferred to the Login page.
-
-image:./images/test_flaskr/3_a_username_has_been_registered.png[3]
-
-I re-type the credential (username and password) that I used to create my User.
-
-image:./images/test_flaskr/4_about_to_login.png[4]
-
-I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged into this blog application.
-
-image:./images/test_flaskr/5_the_user_have_logged_in.png[5]
-
-Now I am going to create a new post. I click the `New` link. Then a empty form is displayed.
-
-image:./images/test_flaskr/6_opened_page_to_create_a_new_post.png[6]
-
-I type texts into the `title` and `body` field.
-
-image:./images/test_flaskr/7_has_typed_texts_into_a_post.png[7]
-
-I click the `Save` button. Then I am transferred to the index page. Please find a post has been saved into the Blob system and is now displayed in the list of posts.
-
-image:./images/test_flaskr/8_the_post_is_found_in_the_list.png[8]
+* https://drive.google.com/file/d/1p4IgsnHZQpw2xJs3EE4uf4aqFlQkZCYl/view?usp=sharing[Movie: Testing Falskr Blog app with 2 browser windows]
 
 == Problem to solve
+
+I want to answer to https://forum.katalon.com/t/using-webui-openbrowser-to-open-multiple-browsers-to-perform-actions-on-those-browser/8206[a question] raised in the Katalon Forum with a runnable sample code set.
 
 Please imagine. I can create 2 users to be authenticated by the web app. I would open 2 windows of Chrome browsers simultaneously. From each Chrome, I would visit the http://127.0.0.1/ as 2 users each. When a user "Alice" made a post, then another user "Bob" should be able to see the post by Alice in an instant. When Bob made a new post, then soon Alice should be able to see the Bob's post.
 
@@ -112,6 +75,52 @@ Now `WebUI.xxx` keywords can interact with the browser which was created by my s
 
 My script can open 2 browsers by calling `new ChromeDriver()` API. My script can call `DriverFactory.changeWebDriver(WebDriver)` API so that `WebUI.xxx` keywords can interact with the browser which was created by my script. These are the magic spell you should need to know.
 
+== Application Under Test at a glance
+
+I have a Web Application to test using Selenium WebDriver. It is a running sample code presented by 
+https://flask.palletsprojects.com/en/2.0.x/tutorial/["Flask Tutorial"]. It is 
+
+____
+a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.
+____
+
+I just typed in the sample codes as published without any changes. Later I will describe how to set it up and run on your local PC. Let me go through the screenshots of the web app to grasp what it is.
+
+I open Chrome browser to visit the URL of the Application Under Test: 
+
+* http://127.0.0.1/
+
+I find the index page as follows, which has no blog posts submitted yet.
+
+image:./images/test_flaskr/1_start_from_here.png[1]
+
+At first, I need to register a User for me before creating posts. I click the `Register` link. Then a form is presented where I am requested to type a credential (username and password pair).
+
+image:./images/test_flaskr/2_going_to_register_a_username.png[2]
+
+I click the `Register` button. Then the user will be registered. I am transferred to the Login page.
+
+image:./images/test_flaskr/3_a_username_has_been_registered.png[3]
+
+I re-type the credential (username and password) that I used to create my User.
+
+image:./images/test_flaskr/4_about_to_login.png[4]
+
+I click the `Log In` button. Then I am transferred to the Index page. Please note that the username is displayed in the header. This implies that now I am logged into this blog application.
+
+image:./images/test_flaskr/5_the_user_have_logged_in.png[5]
+
+Now I am going to create a new post. I click the `New` link. Then a empty form is displayed.
+
+image:./images/test_flaskr/6_opened_page_to_create_a_new_post.png[6]
+
+I type texts into the `title` and `body` field.
+
+image:./images/test_flaskr/7_has_typed_texts_into_a_post.png[7]
+
+I click the `Save` button. Then I am transferred to the index page. Please find a post has been saved into the Blob system and is now displayed in the list of posts.
+
+image:./images/test_flaskr/8_the_post_is_found_in_the_list.png[8]
 
 == Solution described
 
@@ -221,6 +230,3 @@ A Movie is available at ...
 
 5. Alice should be able to read the posts made by Bob. Bob should be able to read the posts made by Alice. My web ui test in Katalon Studio will check this conversation.
 
-== Movie
-
-* https://drive.google.com/file/d/1p4IgsnHZQpw2xJs3EE4uf4aqFlQkZCYl/view?usp=sharing
