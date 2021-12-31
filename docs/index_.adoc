@@ -18,9 +18,9 @@ Please imagine. I can create 2 users to be authenticated by the web app. I would
 
 This test scenario --- testing a web app with 2 browsers simultaneously --- can be extended to business use cases. Suppose that I have an EC site which has dual user interface: Customer UI and Administrator UI. When a user submit an order to purchase some products, then an administrator should be able to see the order in the list of outstanding orders. I want to test both of the Customer UI and the Administrator UI at the same time. My Web UI test should simulate submitting an order in the Customer UI; then my test my test should verify if the order is appearing in the Administrator UI. I want my test to simulate such dual-participants' interaction.
 
-*But how can I test a web app with 2 browsers simultaneously in Katalon Studio?*
+*But how can I open 2 browsers simultaneously in Katalon Studio?*
 
-I can point out a basic problem : Katalon Studio's `WebUI.openBrowser()` keyword can not open 2 browsers.
+There is a basic problem in Katalon Studio. Using `WebUI.openBrowser()` keyword, you can not open 2 browsers.
 
 I made a Test Case link:Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy[Test Cases/analysis/WebUI_openBrowser_twice] in Katalon Studio to demonstrate this problem.
 
@@ -29,19 +29,19 @@ I made a Test Case link:Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780
 include::../Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy[]
 ----
 
-This simple script calls `WebUI.openBrowser()` keyword twice. Do we see 2 windows of browsers opened? --- No. The 1st window opens but is closed by Katalon Studio before the 2nd window opens. 
+This simple script calls `WebUI.openBrowser()` keyword twice. Do we see 2 windows of browsers opened? --- No. The 1st window opens but is immediately closed by Katalon Studio before the 2nd window opens. 
 
 image:./images/analysis/1st_browser_is_closed_before_2nd.png[1st_browser_is_closed]
 
-This is the way how the `WebUI.openBrowser()` is designed. You can not open 2 browses using this keyword.
+This way the `WebUI.openBrowser()` is designed. You can not open 2 browses using this keyword.
 
 == Solution
 
-=== opening browser by calling WebDriver API directly
+=== opening browsers by WebDriver API
 
-Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , https://www.browserstack.com/guide/selenium-webdriver-tutorial[Selenium WebDriver] is working. If I write a script that makes an instances of `WebDriver` class by calling `org.openwa.selenium.chrome.ChromeDriver` directly, then I can open a Chrome browser. My script can create 2 instances of `WebDriver` and keep them running. I can have 2 windows of Chrome browser and my test script can talk to them via the WebDriver API such as `driver.navigate().to("http://127.0.0.1/")`.
+Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , an instance of https://www.browserstack.com/guide/selenium-webdriver-tutorial[Selenium WebDriver] is working. If I write a script that makes an instances of `WebDriver` class by calling `org.openwa.selenium.chrome.ChromeDriver` directly, then I can open a Chrome browser. My script can create 2 instances of `WebDriver` and keep them running. Then I will have 2 windows of Chrome browser. My test script can talk to them via the WebDriver API such as `driver.navigate().to("http://127.0.0.1/")`.
 
-However, Katalon's `WebUI.xxx` keyword, unless properly configured, do not work with the browser (a `WebDriver` instance) that my script instantiated unless my script informs `WebUI.xxx` keywords of the `WebDriver` instance. Let me show you an experiment.
+While opening browsers with WebDriver API, still I want to use `WebUI.xxx` keywords. There is a pitfall. Katalon's `WebUI.xxx` keyword do not work with a browser (a `WebDriver` instance) that my script instantiated. Let me show you an experiment.
 
 link:Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy[Test Cases/analysis/2_WebUI_keywords_do_not_know]
 
@@ -54,7 +54,7 @@ This script opens a Chrome browser window by calling `new ChromeDriver()`. But t
 
 image:./images/analysis/2_unable_to_get_title.png[]
 
-=== inform Katalon Studio of the browser opened by WebDriver API
+=== informing Katalon Studio of browsers opened by WebDriver API
 
 How to fix this error? --- call `DriverFactory.changeWebDriver(WebDriver browser)`.
 
@@ -65,26 +65,30 @@ link:../Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groo
 include::../Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy[]
 ----
 
-This code passes. 
+This code passes.
 
 image:./images/analysis/3_capable_to_get_title.png[capable]
 
 Now `WebUI.xxx` keywords can interact with the browser which was created by my script using `new ChromeDriver()` API.
 
-=== opening 2 windows 
+=== Magic spells for opening 2 browsers
 
-My script can open 2 browsers by calling `new ChromeDriver()` API. My script can call `DriverFactory.changeWebDriver(WebDriver)` API so that `WebUI.xxx` keywords can interact with the browser which was created by my script. These are the magic spell you should need to know.
+In short, the following is the magic spells you should need to know.
+
+1. In Katalonn Studio, test script can open 2 browsers by calling `new ChromeDriver()` API.
+
+2. a test script can call `DriverFactory.changeWebDriver(WebDriver)` API so that `WebUI.xxx` keywords can interact with the browser which was created by the script. 
 
 == Application Under Test at a glance
 
-I have a Web Application to test using Selenium WebDriver. It is a running sample code presented by 
+I will use a Web Application named "Flaskr" as a test bed. Flaskr is the sample code presented by 
 https://flask.palletsprojects.com/en/2.0.x/tutorial/["Flask Tutorial"]. It is 
 
 ____
 a basic blog application called Flaskr. Users will be able to register, log in, create posts, and edit or delete their own posts.
 ____
 
-I just typed in the sample codes as published without any changes. Later I will describe how to set it up and run on your local PC. Let me go through the screenshots of the web app to grasp what it is.
+I just typed the sample codes as published without any changes, and made a docker image. Later I will describe how to run it on your local PC. Let me go through the screenshots of Flarkr to see what it is.
 
 I open Chrome browser to visit the URL of the Application Under Test: 
 
@@ -137,14 +141,13 @@ My code set is large enough and complex. The target Web App ("Flaskr") deserves 
 
 ==== Installing docker command
 
-I installed `docker` command into my Mac Book Air
+You need the `docker` command on your own PC. I installed `docker` command into my Mac Book Air using Homebrew.
 
 ```
 $ brew install docker
-...
 ```
 
-I checked if the `docker` command is running.
+I checked if the `docker` command is operational.
 
 ```
 $ docker --version
@@ -153,20 +156,20 @@ Docker version 20.10.2, build 2291f61
 $ 
 ```
 
-Windows users can use "Docker Desktop on Windnows" of course,
+Windows users can use "Docker Desktop on Windows",
 
 * https://docs.docker.com/desktop/windows/install/
 
 
-==== Starting up HTTP Server App at http://127.0.0.1/
+==== Starting up Flaskr server at http://127.0.0.1/
 
-I made a temporary directory with any name.
+You need a temporary directory with any name.
 ```
 $ cd ~
 $ mkdir flaskr
 ```
 
-In the temp directory, I started a web app using a docker image.
+In the temp directory, you want to execute the `docker run` command:
 
 ```
 $ cd ~/flaskr
@@ -187,46 +190,24 @@ Now I can open a browser and visit the following URL.
 
 * http://127.0.0.1:80/
 
-image:docs/images/flaskr_just_started.png[]
+You can stop the HTTP server by CTRL+C.
+
+Flaskr has an internal database where user credentials and posts are persisted. When Flaskr is stopped and re-started, it clears the database to the initial state. 
+
+=== Flaskr docker image
 
 I made a docker image which is publicly available at Docker Hub :
 
 * https://hub.docker.com/repository/docker/kazurayam/flaskr-kazurayam
 
-=== External Dependencies
+See https://github.com/kazurayam/MyPythonProjectTemplate[MyPythonProjectTemplate] how I created this docker image.
 
-In the project's `Drivers` directory you need to download a few jar files.
+== Description 
 
-1. https://github.com/kazurayam/webdriverfactory/releases[webdriverfactory]
+=== Test Cases/flaskr/TC1_open_close
 
-2. https://github.com/kazurayam/WebDriverSupport4ks/releases[webdriversupport4ks]
+=== Test Cases/flaskr/TC2_register_Alice_then_LogIn
 
-3. https://github.com/kazurayam/junit4ks/releases[junit4ks]
+=== Test Cases/flaskr/TC3_Alice_and_Bob_interact
 
-I developed these.
-
-== Sample codes
-
-=== Test Cases/plain/TC1_open_close
-
-=== Test Cases/plain/TC2_register_Alice_then_LogIn
-
-=== Test Cases/POM/test_flaskr
-
-=== Test Cases/POM/test_flaskr_modularized
-
-=== Test Cases/POM/test_flaskr_final
-
-A Movie is available at ...
-
-
-1. I will use *Flaskr* at `http://127.0.0.1` as a partner for me to develop a set of Web UI test scripts in Katalon Studio.
-
-2. I will open 2 Chrome browsers. On each, I will visit the Flaskr site and interact with it. I will keep 2 browsers open and operate on them simultaneously.
-
-3. On one browser, I will register a user *Alice* and make some posts.
-
-4. On another browser, I will register another user *Bob* and make some posts.
-
-5. Alice should be able to read the posts made by Bob. Bob should be able to read the posts made by Alice. My web ui test in Katalon Studio will check this conversation.
-
+=== Test Cases/POM/TC4_Alice_and_Bob_interact_POM
