@@ -1,5 +1,6 @@
 package flaskrtest.pages.auth
 
+import org.openqa.selenium.By as SeleniumBy
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 
@@ -13,8 +14,8 @@ public class RegisterCredentialPage {
 	static final TestObject USERNAME_INPUT  = By.id('username')
 	static final TestObject PASSWORD_INPUT  = By.id('password')
 	static final TestObject REGISTER_BUTTON = By.xpath('//input[@type="submit" and @value="Register"]')
-	static final TestObject DIV_FLASH       = By.xpath('//div[contains(@class, "flash")]')
 	static final TestObject LOGIN_ANCHOR    = By.xpath('//a[contains(text(), "Log In")]')
+	static final SeleniumBy DIV_FLASH       = SeleniumBy.xpath('//div[contains(@class, "flash")]')
 	
 	private WebDriver browser
 
@@ -29,9 +30,8 @@ public class RegisterCredentialPage {
 	}
 
 	Boolean flash_exists() {
-		DriverFactory.changeWebDriver(browser)
-		WebElement flash = WebUI.findWebElement(DIV_FLASH)
-		return flash != null
+		List<WebElement> flashList = browser.findElements(DIV_FLASH)
+		return flashList.size() > 0
 	}
 
 	void type_username(String username) {
