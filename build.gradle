@@ -4,7 +4,7 @@
 
 
 group = 'com.kazurayam'
-version = '0.1.0-SNAPSHOT'
+version = '0.1.0'
 
 ext {
     AUTO_IMPORTED_JAR_PREFIX = 'AUTOIMPORTED_'
@@ -23,9 +23,10 @@ configurations {
 }
 
 dependencies {
-        myconf group: 'com.kazurayam', name: 'webdriverfactory', version: "${webdriverfactoryVersion}"
-        myconf group: 'com.kazurayam', name: 'junit4ks', version: "${junit4ksVersion}"
-}
+  myconf group: 'com.kazurayam', name: 'junit4ks', version: "${junit4ksVersion}"
+  // I thought I would need the webdriverefactory library, but in the end, I didn't
+  // myconf group: 'com.kazurayam', name: 'webdriverfactory', version: "${webdriverfactoryVersion}"
+  }
 
 // -----------------------------------------------------------------
 // codes to import external jar files into the Drivers directory

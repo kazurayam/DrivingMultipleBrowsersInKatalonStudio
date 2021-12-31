@@ -69,7 +69,7 @@ This script opens a Chrome browser window by calling `new ChromeDriver()`. But t
 
 How to fix this error? --- call `DriverFactory.changeWebDriver(WebDriver browser)`.
 
-[TestCases/analysis/3\_how\_to\_inform\_WeebUUI\_keywords](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy)
+[TestCases/analysis/3\_how\_to\_inform\_WebUI\_keywords](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy)
 
     import org.openqa.selenium.WebDriver
     import org.openqa.selenium.chrome.ChromeDriver
@@ -490,7 +490,7 @@ This script does exactly the same as [flaskr/TC3\_Alice\_and\_Bob\_interact](htt
         browser.manage().window().setPosition(point)
     }
 
-For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interact\_POM](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy) with POM is far easier to understand/maintain/extend than [flaskr/TC3\_Alice\_and\_Bob\_interact](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy).
+For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interact\_POM](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy) with POM is easier to understand/maintain/extend than [flaskr/TC3\_Alice\_and\_Bob\_interact](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy).
 
 ## Appendix
 
@@ -498,6 +498,6 @@ For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interact\_POM](https://git
 
 I wrote the source of this document in [Asciidoc](https://asciidoc-py.github.io/index.html) format, then convert it into Markdown format using [asciidoctor](https://asciidoctor.org/) and [pandoc](https://pandoc.org/).
 
-Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy & paste operation is required. This made may document authoring work productive.
+Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy & paste operation is required. This made my document authoring work productive.
 
-I used a shell script [indexconv.sh](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/docs/indexconv.sh) to adoc to md conversion. This script was originally shared at <https://github.com/github/markup/issues/1095>
+I used a shell script [indexconv.sh](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/docs/indexconv.sh) from `.adoc` to `.md` conversion. This script was originally shared at <https://github.com/github/markup/issues/1095>

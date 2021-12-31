@@ -62,7 +62,7 @@ image:./images/analysis/2_unable_to_get_title.png[]
 
 How to fix this error? --- call `DriverFactory.changeWebDriver(WebDriver browser)`.
 
-link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy[TestCases/analysis/3_how_to_inform_WeebUUI_keywords]
+link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy[TestCases/analysis/3_how_to_inform_WebUI_keywords]
 
 [source, groovy]
 ----
@@ -252,7 +252,7 @@ include::../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groov
 ----
 
 
-For me, the source code of link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interact_POM] with POM is far easier to understand/maintain/extend than link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
+For me, the source code of link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interact_POM] with POM is easier to understand/maintain/extend than link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
 
 == Appendix
 
@@ -260,6 +260,6 @@ For me, the source code of link:https://github.com/kazurayam/FlaskrTestInKatalon
 
 I wrote the source of this document in https://asciidoc-py.github.io/index.html[Asciidoc] format, then convert it into Markdown format using https://asciidoctor.org/[asciidoctor] and https://pandoc.org/[pandoc]. 
 
-Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy & paste operation is required. This made may document authoring work productive.
+Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy & paste operation is required. This made my document authoring work productive.
 
-I used a shell script link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/docs/indexconv.sh[indexconv.sh] to adoc to md conversion. This script was originally shared at https://github.com/github/markup/issues/1095 
+I used a shell script link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/docs/indexconv.sh[indexconv.sh] from `.adoc` to `.md` conversion. This script was originally shared at https://github.com/github/markup/issues/1095 
