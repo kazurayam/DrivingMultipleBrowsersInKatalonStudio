@@ -73,9 +73,9 @@ Now `WebUI.xxx` keywords can interact with the browser which was created by my s
 
 === Magic spells for opening 2 browsers
 
-In short, the following is the magic spells you should need to know.
+In short, the following is the magic spells you need to know.
 
-1. In Katalonn Studio, test script can open 2 browsers by calling `new ChromeDriver()` API.
+1. In Katalon Studio, test script can open 2 browsers by calling `new ChromeDriver()` API twice.
 
 2. a test script can call `DriverFactory.changeWebDriver(WebDriver)` API so that `WebUI.xxx` keywords can interact with the browser which was created by the script. 
 
@@ -128,18 +128,7 @@ image:./images/test_flaskr/8_the_post_is_found_in_the_list.png[8]
 
 == Solution described
 
-How could I actually implement a set of Web UI test that targets the "Flaskr" blog system? --- Here I will show you a code set that runs. The test code has the following characteristics.
-
-1. I will start with a Test Case in plain-old Katalon Studio style. At first it looks trivial.
-2. The `Flaskr` Web App has several pages (authenticating users, creating/editing/deleting blob posts), which is small comparing to the real-world Web Apps, but my Test Case in plain-old Katalon Studio style soon gets large with a lot of code duplications I add more test scenarios.
-3. In order to make my tests easier to understand and maintainable, I will introduce the https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html[POM (Page Object Model)]. With the POM concept in mind, I can implement my tests well modularized.
-4. Writing/understanding tests with POM requires good enough programming skill.
-
-My code set is large enough and complex. The target Web App ("Flaskr") deserves it. I could not make it any simpler. I hope that people with sufficient programming skill in Java/Groovy would be able to read the source code and understand them without verbose descriptions. I would note some essentials points, but I would not explain the code in too much detail.
-
-=== Setting up Envrionment
-
-==== Installing docker command
+=== Installing docker command
 
 You need the `docker` command on your own PC. I installed `docker` command into my Mac Book Air using Homebrew.
 
@@ -161,7 +150,7 @@ Windows users can use "Docker Desktop on Windows",
 * https://docs.docker.com/desktop/windows/install/
 
 
-==== Starting up Flaskr server at http://127.0.0.1/
+=== Starting up Flaskr server at http://127.0.0.1/
 
 You need a temporary directory with any name.
 ```
@@ -200,14 +189,35 @@ I made a docker image which is publicly available at Docker Hub :
 
 * https://hub.docker.com/repository/docker/kazurayam/flaskr-kazurayam
 
-See https://github.com/kazurayam/MyPythonProjectTemplate[MyPythonProjectTemplate] how I created this docker image.
+See https://github.com/kazurayam/MyPythonProjectTemplate[MyPythonProjectTemplate] (japanese only) how I created this docker image.
 
-== Description 
+== Description of codes
 
 === Test Cases/flaskr/TC1_open_close
 
+* link:../Scripts/flaskr/TC1_open_close/Script1640905753444.groovy[flaskr/TC1_open_close]
+
+This script opens a Chrome browser using Katalon Studio's built-in keyword `WebUI.openBrowser`. It navigates to a URL, verifies if the loaded page is the one expected. This is a typical/simplest test script in Katalon Studio.
+
+[source, groovy]
+----
+include::../Scripts/flaskr/TC1_open_close/Script1640905753444.groovy[]
+----
+
 === Test Cases/flaskr/TC2_register_Alice_then_LogIn
 
+* link:../Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy[flaskr/TC2_register_Alice_the_Login]
+
+This script does a bit more than `TC1_openn_close`. It interacts with the "Flaskr" web app.
+
+1. It opens a Chrome browser usig Katalon keyword `WebUI.openBrowser()` and navigate to the Flarkr URL.
+2. It registers a new user "Alice".
+3. It logs in the Flaskr app using the user "Alice".
+
+[source, groovy]
+----
+include::../Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy[]
+----
 === Test Cases/flaskr/TC3_Alice_and_Bob_interact
 
 === Test Cases/POM/TC4_Alice_and_Bob_interact_POM
