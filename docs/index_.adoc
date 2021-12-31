@@ -252,5 +252,15 @@ include::../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groov
 ----
 
 
-For me, the source code of link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM] is easier to understand/maintain/extend than link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
+For me, the source code of link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM] with POM is far easier to understand/maintain/extend than link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
+
+== Appendix
+
+=== Asciidoc -> Markdown
+
+I wrote the source of this document in https://asciidoc-py.github.io/index.html[Asciidoc] format, then convert it into Markdown format using https://asciidoctor.org/[asciidoctor] and https://pandoc.org/[pandoc]. 
+
+I used a shell scriipt link:docs/indexconv.sh[], which was originally shared at https://github.com/github/markup/issues/1095 
+
+Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy&paste required.
 

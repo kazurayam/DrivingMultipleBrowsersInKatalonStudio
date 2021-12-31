@@ -490,4 +490,14 @@ This script does exactly the same as [flaskr/TC3\_Alice\_and\_Bob\_interact](../
         browser.manage().window().setPosition(point)
     }
 
-For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interace\_POM](../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy) is easier to understand/maintain/extend than [flaskr/TC3\_Alice\_and\_Bob\_interact](../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy).
+For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interace\_POM](../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy) with POM is far easier to understand/maintain/extend than [flaskr/TC3\_Alice\_and\_Bob\_interact](../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy).
+
+## Appendix
+
+### Asciidoc → Markdown
+
+I wrote the source of this document in [Asciidoc](https://asciidoc-py.github.io/index.html) format, then convert it into Markdown format using [asciidoctor](https://asciidoctor.org/) and [pandoc](https://pandoc.org/).
+
+I used a shell scriipt [docs/indexconv.sh](docs/indexconv.sh), which was originally shared at <https://github.com/github/markup/issues/1095>
+
+Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy&paste required.
