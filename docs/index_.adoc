@@ -26,7 +26,7 @@ This test scenario --- testing a web app with 2 browsers simultaneously --- can 
 
 There is a basic problem in Katalon Studio. Using `WebUI.openBrowser()` keyword, you can not open 2 browsers.
 
-I made a Test Case link:Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy[Test Cases/analysis/WebUI_openBrowser_twice] in Katalon Studio to demonstrate this problem.
+I made a Test Case link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy[Test Cases/analysis/WebUI_openBrowser_twice] in Katalon Studio to demonstrate this problem.
 
 [source, groovy]
 ----
@@ -47,7 +47,7 @@ Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , an instance of
 
 While opening browsers with WebDriver API, still I want to use `WebUI.xxx` keywords. There is a pitfall. Katalon's `WebUI.xxx` keyword do not work with a browser (a `WebDriver` instance) that my script instantiated. Let me show you an experiment.
 
-link:Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy[Test Cases/analysis/2_WebUI_keywords_do_not_know]
+link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy[Test Cases/analysis/2_WebUI_keywords_do_not_know]
 
 [source,groovy]
 ----
@@ -62,7 +62,7 @@ image:./images/analysis/2_unable_to_get_title.png[]
 
 How to fix this error? --- call `DriverFactory.changeWebDriver(WebDriver browser)`.
 
-link:../Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy[TestCases/analysis/3_how_to_inform_WeebUUI_keywords]
+link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy[TestCases/analysis/3_how_to_inform_WeebUUI_keywords]
 
 [source, groovy]
 ----
@@ -172,7 +172,7 @@ Serving on http://0.0.0.0:8080
 
 Or, you can use the following shell script in the root directory of this project.
 
-* link:./startup_flaskr.sh[startup_flaskr.sh]
+* link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/startup_flaskr.sh[startup_flaskr.sh]
 [source,shell]
 ----
 include::../startup_flaskr.sh[]
@@ -199,7 +199,7 @@ See https://github.com/kazurayam/MyPythonProjectTemplate[MyPythonProjectTemplate
 
 === Test Cases/flaskr/TC1_open_close
 
-* link:../Scripts/flaskr/TC1_open_close/Script1640905753444.groovy[flaskr/TC1_open_close]
+* link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC1_open_close/Script1640905753444.groovy[flaskr/TC1_open_close]
 
 This script opens a Chrome browser using Katalon Studio's built-in keyword `WebUI.openBrowser`. It navigates to a URL, verifies if the loaded page is the one expected. This is a typical/simplest test script in Katalon Studio.
 
@@ -210,7 +210,7 @@ include::../Scripts/flaskr/TC1_open_close/Script1640905753444.groovy[]
 
 === Test Cases/flaskr/TC2_register_Alice_then_LogIn
 
-* link:../Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy[flaskr/TC2_register_Alice_the_Login]
+* link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy[flaskr/TC2_register_Alice_the_Login]
 
 This script does a bit more than `TC1_openn_close`. It interacts with the "Flaskr" web app.
 
@@ -225,7 +225,7 @@ include::../Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.gro
 
 === Test Cases/flaskr/TC3_Alice_and_Bob_interact
 
-* link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact]
+* link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact]
 
 This script is coded in the typical style of Katalon Studio's test case.
 
@@ -242,9 +242,9 @@ This script introduces Groovy functions (e.g, `def login()`) in order to reduce 
 
 === Test Cases/POM/TC4_Alice_and_Bob_interact_POM
 
-* link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM]
+* link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM]
 
-This script does exactly the same as link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact]. But the code looks quite different. It employs the design pattern https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html[Page Object model].
+This script does exactly the same as link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact]. But the code looks quite different. It employs the design pattern https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html[Page Object model].
 
 [source, groovy]
 ----
@@ -252,7 +252,7 @@ include::../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groov
 ----
 
 
-For me, the source code of link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM] with POM is far easier to understand/maintain/extend than link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
+For me, the source code of link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interact_POM] with POM is far easier to understand/maintain/extend than link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
 
 == Appendix
 
@@ -260,7 +260,6 @@ For me, the source code of link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Sc
 
 I wrote the source of this document in https://asciidoc-py.github.io/index.html[Asciidoc] format, then convert it into Markdown format using https://asciidoctor.org/[asciidoctor] and https://pandoc.org/[pandoc]. 
 
-I used a shell scriipt link:docs/indexconv.sh[], which was originally shared at https://github.com/github/markup/issues/1095 
+Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy & paste operation is required. This made may document authoring work productive.
 
-Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy&paste required.
-
+I used a shell script link:https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/docs/indexconv.sh[indexconv.sh] to adoc to md conversion. This script was originally shared at https://github.com/github/markup/issues/1095 

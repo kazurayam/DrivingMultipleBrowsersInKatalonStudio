@@ -24,7 +24,7 @@ This test scenario --- testing a web app with 2 browsers simultaneously --- can 
 
 There is a basic problem in Katalon Studio. Using `WebUI.openBrowser()` keyword, you can not open 2 browsers.
 
-I made a Test Case [Test Cases/analysis/WebUI\_openBrowser\_twice](Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy) in Katalon Studio to demonstrate this problem.
+I made a Test Case [Test Cases/analysis/WebUI\_openBrowser\_twice](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/1_WebUI_openBrowser_twice/Script1640780797502.groovy) in Katalon Studio to demonstrate this problem.
 
     import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
@@ -48,7 +48,7 @@ Behind the `WebUI.openBrowser()` and other `WebUI.xxx` keywords , an instance of
 
 While opening browsers with WebDriver API, still I want to use `WebUI.xxx` keywords. There is a pitfall. Katalon’s `WebUI.xxx` keyword do not work with a browser (a `WebDriver` instance) that my script instantiated. Let me show you an experiment.
 
-[Test Cases/analysis/2\_WebUI\_keywords\_do\_not\_know](Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy)
+[Test Cases/analysis/2\_WebUI\_keywords\_do\_not\_know](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/2_WebUI_keywords_do_not_know/Script1640781667491.groovy)
 
     String chrome_executable_path = DriverFactory.getChromeDriverPath()
     System.setProperty('webdriver.chrome.driver', chrome_executable_path)
@@ -69,7 +69,7 @@ This script opens a Chrome browser window by calling `new ChromeDriver()`. But t
 
 How to fix this error? --- call `DriverFactory.changeWebDriver(WebDriver browser)`.
 
-[TestCases/analysis/3\_how\_to\_inform\_WeebUUI\_keywords](../Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy)
+[TestCases/analysis/3\_how\_to\_inform\_WeebUUI\_keywords](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/analysis/3_how_to_inform_WebUI_keywords/Script1640781643037.groovy)
 
     import org.openqa.selenium.WebDriver
     import org.openqa.selenium.chrome.ChromeDriver
@@ -182,7 +182,7 @@ In the temp directory, you want to execute the `docker run` command:
 
 Or, you can use the following shell script in the root directory of this project.
 
--   [startup\_flaskr.sh](./startup_flaskr.sh)
+-   [startup\_flaskr.sh](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/startup_flaskr.sh)
 
 <!-- -->
 
@@ -213,7 +213,7 @@ See [MyPythonProjectTemplate](https://github.com/kazurayam/MyPythonProjectTempla
 
 ### Test Cases/flaskr/TC1\_open\_close
 
--   [flaskr/TC1\_open\_close](../Scripts/flaskr/TC1_open_close/Script1640905753444.groovy)
+-   [flaskr/TC1\_open\_close](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC1_open_close/Script1640905753444.groovy)
 
 This script opens a Chrome browser using Katalon Studio’s built-in keyword `WebUI.openBrowser`. It navigates to a URL, verifies if the loaded page is the one expected. This is a typical/simplest test script in Katalon Studio.
 
@@ -234,7 +234,7 @@ This script opens a Chrome browser using Katalon Studio’s built-in keyword `We
 
 ### Test Cases/flaskr/TC2\_register\_Alice\_then\_LogIn
 
--   [flaskr/TC2\_register\_Alice\_the\_Login](../Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy)
+-   [flaskr/TC2\_register\_Alice\_the\_Login](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy)
 
 This script does a bit more than `TC1_openn_close`. It interacts with the "Flaskr" web app.
 
@@ -297,7 +297,7 @@ This script does a bit more than `TC1_openn_close`. It interacts with the "Flask
 
 ### Test Cases/flaskr/TC3\_Alice\_and\_Bob\_interact
 
--   [flaskr/TC3\_Alice\_and\_Bob\_interact](../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy)
+-   [flaskr/TC3\_Alice\_and\_Bob\_interact](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy)
 
 This script is coded in the typical style of Katalon Studio’s test case.
 
@@ -319,9 +319,9 @@ This script introduces Groovy functions (e.g, `def login()`) in order to reduce 
 
 ### Test Cases/POM/TC4\_Alice\_and\_Bob\_interact\_POM
 
--   [POM/TC4\_Alice\_and\_Bob\_interace\_POM](../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy)
+-   [POM/TC4\_Alice\_and\_Bob\_interace\_POM](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy)
 
-This script does exactly the same as [flaskr/TC3\_Alice\_and\_Bob\_interact](../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy). But the code looks quite different. It employs the design pattern [Page Object model](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html).
+This script does exactly the same as [flaskr/TC3\_Alice\_and\_Bob\_interact](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy). But the code looks quite different. It employs the design pattern [Page Object model](https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html).
 
     import org.openqa.selenium.Dimension
     import org.openqa.selenium.Point
@@ -490,7 +490,7 @@ This script does exactly the same as [flaskr/TC3\_Alice\_and\_Bob\_interact](../
         browser.manage().window().setPosition(point)
     }
 
-For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interace\_POM](../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy) with POM is far easier to understand/maintain/extend than [flaskr/TC3\_Alice\_and\_Bob\_interact](../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy).
+For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interact\_POM](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy) with POM is far easier to understand/maintain/extend than [flaskr/TC3\_Alice\_and\_Bob\_interact](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy).
 
 ## Appendix
 
@@ -498,6 +498,6 @@ For me, the source code of [POM/TC4\_Alice\_and\_Bob\_interace\_POM](../Scripts/
 
 I wrote the source of this document in [Asciidoc](https://asciidoc-py.github.io/index.html) format, then convert it into Markdown format using [asciidoctor](https://asciidoctor.org/) and [pandoc](https://pandoc.org/).
 
-I used a shell scriipt [docs/indexconv.sh](docs/indexconv.sh), which was originally shared at <https://github.com/github/markup/issues/1095>
+Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy & paste operation is required. This made may document authoring work productive.
 
-Asciidoc enabled me to automatically include the latest source codes into the document. No manual copy&paste required.
+I used a shell script [indexconv.sh](https://github.com/kazurayam/FlaskrTestInKatalonStudio/blob/master/docs/indexconv.sh) to adoc to md conversion. This script was originally shared at <https://github.com/github/markup/issues/1095>
