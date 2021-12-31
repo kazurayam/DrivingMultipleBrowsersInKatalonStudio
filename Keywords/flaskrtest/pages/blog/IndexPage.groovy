@@ -1,8 +1,10 @@
 package flaskrtest.pages.blog
 
+import java.util.stream.Collectors
+
+import org.openqa.selenium.By as SeleniumBy
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
-import org.openqa.selenium.By as SeleniumBy
 
 import com.kazurayam.ks.testobject.By
 import com.kms.katalon.core.testobject.TestObject
@@ -12,6 +14,7 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 class IndexPage {
 
 	static final String URL = 'http://127.0.0.1:80/'
+	static final TestObject APP_HEADER      = By.xpath('//h1[contains(text(),"Flaskr")]')
 	static final TestObject REGISTER_ANCHOR = By.xpath('//a[contains(text(), "Register")]')
 	static final TestObject LOGIN_ANCHOR    = By.xpath('//a[contains(text(), "Log In")]')
 	static final TestObject LOGOUT_ANCHOR   = By.xpath('//a[contains(text(), "Log Out")]')
@@ -52,6 +55,21 @@ class IndexPage {
 		WebUI.click(LOGIN_ANCHOR)
 	}
 
+	Boolean app_header_exists() {
+		DriverFactory.changeWebDriver(browser)
+		return WebUI.waitForElementPresent(APP_HEADER, TIMEOUT)
+	}
+
+	Boolean register_anchor_exists() {
+		DriverFactory.changeWebDriver(browser)
+		return WebUI.waitForElementPresent(REGISTER_ANCHOR, TIMEOUT)
+	}
+
+	Boolean login_anchor_exists() {
+		DriverFactory.changeWebDriver(browser)
+		return WebUI.waitForElementPresent(LOGIN_ANCHOR, TIMEOUT)
+	}
+
 	Boolean posts_header_exists() {
 		DriverFactory.changeWebDriver(browser)
 		return WebUI.waitForElementPresent(POSTS_HEADER, TIMEOUT)
@@ -64,6 +82,7 @@ class IndexPage {
 
 	int get_posts_count() {
 		List<WebElement> posts = WebUI.findWebElements(POSTS, TIMEOUT)
+		return posts.size()
 	}
 
 	void open_update_page_of_latest() {
@@ -124,5 +143,21 @@ class IndexPage {
 		} else {
 			return null
 		}
+	}
+
+	List<Post> get_posts_by(String username) {
+		Objects.requireNonNull(username)
+		if (username.length() == 0)
+			throw new IllegalArgumentException("username must not be empty")
+		DriverFactory.changeWebDriver(browser)
+		List<WebElement> posts = WebUI.findWebElements(POSTS, TIMEOUT)
+		return posts.stream()
+				.filter({ webElement ->
+					webElement.getText().contains(username)
+				})
+				.map({ webElement ->
+					new Post(webElement)
+				})
+				.collect(Collectors.toList())
 	}
 }

@@ -12,7 +12,7 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import flaskrtest.data.Song
 import flaskrtest.data.Songs
 
-// preparatio for ChromeDriver
+// preparation for ChromeDriver
 String chrome_executable_path = DriverFactory.getChromeDriverPath()
 System.setProperty('webdriver.chrome.driver', chrome_executable_path)
 
@@ -39,19 +39,25 @@ post(browser0, "Alice", song_of_miyuki)
 // Bob makes a post
 post(browser1, "Bob", song_of_queen)
 
-// Alice finds the song that Bob posted
+// ensure Alice finds the song that Bob posted
 finds(browser0, "Alice", "Bob", song_of_queen)
 
-// Bob finds the song that Alice posted
+// ensure Bob finds the song that Alice posted
 finds(browser1, "Bob", "Alice", song_of_miyuki)
 
-WebUI.delay(3)
+WebUI.delay(1)
 
 // close 2 browsers
 browser0.quit()
 browser1.quit()
 
-
+/**
+ * 
+ * @param browser
+ * @param username
+ * @param password
+ * @return
+ */
 def login(WebDriver browser, String username, String password) {
 	DriverFactory.changeWebDriver(browser)
 	browser.navigate().to('http://127.0.0.1/')
@@ -92,7 +98,13 @@ def login(WebDriver browser, String username, String password) {
 	WebUI.verifyElementPresent(findTestObject("blog/IndexPage/nav_span_username", ["username": username]), 3)
 }
 
-
+/**
+ * 
+ * @param browser
+ * @param username
+ * @param song
+ * @return
+ */
 def post(WebDriver browser, String username, Song song) {
 	DriverFactory.changeWebDriver(browser)
 	// let's start from the index page
@@ -120,16 +132,31 @@ def post(WebDriver browser, String username, Song song) {
 	assert body_of_the_latest_post == song.lyric
 }
 
-
+/**
+ * 
+ * @param browser
+ * @param username
+ * @param somebody
+ * @param song
+ * @return
+ */
 def finds(WebDriver browser, String username, String somebody, Song song) {
 	DriverFactory.changeWebDriver(browser)
 	// let's start from the index page
 	browser.navigate().to('http://127.0.0.1/')
 	// find a post by somebody
 	String title = WebUI.getText(findTestObject("blog/IndexPage/post_by_somebody_title", ["by": somebody]))
+	assert title != null
 	assert title.contains(song.title)
 }
 
+/**
+ * 
+ * @param browser
+ * @param dimension
+ * @param point
+ * @return
+ */
 def layoutWindow(WebDriver browser, Dimension dimension, Point point) {
 	browser.manage().window().setSize(dimension)
 	browser.manage().window().setPosition(point)

@@ -15,6 +15,6 @@
       <guid>32c0801f-846d-4a51-a500-34b53bea0de1</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/plain/TC3_Alice_and_Bob_interact</testCaseId>
+      <testCaseId>Test Cases/flaskr/TC3_Alice_and_Bob_interact</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

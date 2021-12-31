@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description></description>
-   <name>test_flaskr_0_screenshots</name>
+   <name>flaskr_screenshots</name>
    <tag></tag>
    <comment></comment>
    <testCaseGuid>76a5afce-de3b-4ed9-92d1-813682036fd4</testCaseGuid>

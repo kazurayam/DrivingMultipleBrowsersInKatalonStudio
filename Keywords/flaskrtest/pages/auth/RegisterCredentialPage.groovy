@@ -13,8 +13,9 @@ public class RegisterCredentialPage {
 	static final TestObject USERNAME_INPUT  = By.id('username')
 	static final TestObject PASSWORD_INPUT  = By.id('password')
 	static final TestObject REGISTER_BUTTON = By.xpath('//input[@type="submit" and @value="Register"]')
-	static final TestObject DIV_FLASH       = By.xpath('//div[containns(@class,"flash")]')
-
+	static final TestObject DIV_FLASH       = By.xpath('//div[contains(@class, "flash")]')
+	static final TestObject LOGIN_ANCHOR    = By.xpath('//a[contains(text(), "Log In")]')
+	
 	private WebDriver browser
 
 	RegisterCredentialPage(WebDriver browser) {
@@ -25,6 +26,12 @@ public class RegisterCredentialPage {
 		DriverFactory.changeWebDriver(browser)
 		WebElement register_button = WebUI.findWebElement(REGISTER_BUTTON)
 		return register_button != null
+	}
+
+	Boolean flash_exists() {
+		DriverFactory.changeWebDriver(browser)
+		WebElement flash = WebUI.findWebElement(DIV_FLASH)
+		return flash != null
 	}
 
 	void type_username(String username) {
@@ -40,5 +47,10 @@ public class RegisterCredentialPage {
 	void do_register() {
 		DriverFactory.changeWebDriver(browser)
 		WebUI.click(REGISTER_BUTTON)
+	}
+
+	void do_login() {
+		DriverFactory.changeWebDriver(browser)
+		WebUI.click(LOGIN_ANCHOR)
 	}
 }
