@@ -1,5 +1,9 @@
 = Flaskr Test in Katalon Studio
 
+____
+Back to link:https://github.com/kazurayam/FlaskrTestInKatalonStudio[FlaskrTestInKatalonStudio repository]
+____
+
 Here I am going to explain what I have done to test a Blog app using 2 browser windows simultaneously. I used Katalon Studio. I wrote my test scripts in 2 ways; one in the typical Katalon Studio style, another using Page Object Model
 
 This project is meant to be [underline]#a set of sample codes for myself to develop a large scale test suite in future#.
@@ -218,6 +222,35 @@ This script does a bit more than `TC1_openn_close`. It interacts with the "Flask
 ----
 include::../Scripts/flaskr/TC2_register_Alice_then_LogIn/Script1640905753448.groovy[]
 ----
+
 === Test Cases/flaskr/TC3_Alice_and_Bob_interact
 
+* link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact]
+
+This script is coded in the typical style of Katalon Studio's test case.
+
+This script demonstrates how to perform a Web UI test using 2 browsers in Katalon Studio.
+
+1. This script opens 2 windows of Chrome browser.
+2. It interacts with Flaskr app as 2 users "Alice" and "Bob" through each 2 windows.
+3. Alice logs in Flaskr, makes a post. The post shows a lyrics of a famous song.
+4. Bob logs in Flaskr, makes a post. The post shows a lyrics of another famous song.
+5. _Alice checks if she finds a post made by Bob in the list of posts in Flaskr._
+6. _Bob checks if he finds a post mode by Alice._
+
+This script introduces Groovy functions (e.g, `def login()`) in order to reduce code duplications.
+
 === Test Cases/POM/TC4_Alice_and_Bob_interact_POM
+
+* link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM]
+
+This script does exactly the same as link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact]. But the code looks quite different. It employs the design pattern https://www.guru99.com/page-object-model-pom-page-factory-in-selenium-ultimate-guide.html[Page Object model].
+
+[source, groovy]
+----
+include::../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[]
+----
+
+
+For me, the source code of link:../Scripts/POM/TC4_Alice_and_Bob_interact_POM/Script1640905732532.groovy[POM/TC4_Alice_and_Bob_interace_POM] is easier to understand/maintain/extend than link:../Scripts/flaskr/TC3_Alice_and_Bob_interact/Script1640905753452.groovy[flaskr/TC3_Alice_and_Bob_interact].
+
