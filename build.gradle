@@ -8,8 +8,6 @@ version = '0.1.0'
 
 ext {
     AUTO_IMPORTED_JAR_PREFIX = 'AUTOIMPORTED_'
-    webdriverfactoryVersion = '0.2.0-SNAPSHOT'
-    webdriversupport4ksVersion = '0.4.0-SNAPSHOT'
     junit4ksVersion = '1.6.1'
 }
 
@@ -24,9 +22,7 @@ configurations {
 
 dependencies {
   myconf group: 'com.kazurayam', name: 'junit4ks', version: "${junit4ksVersion}"
-  // I thought I would need the webdriverefactory library, but in the end, I didn't
-  // myconf group: 'com.kazurayam', name: 'webdriverfactory', version: "${webdriverfactoryVersion}"
-  }
+}
 
 // -----------------------------------------------------------------
 // codes to import external jar files into the Drivers directory
@@ -56,7 +52,6 @@ task drivers {
 	            .from(project.getConfigurations().getByName("myconf"))
 	            .into("Drivers")
 	            .include(
-	                "**/webdriverfactory*.jar",
 	                "**/junit4ks*.jar"
 	                )
 	            .rename({ s ->
