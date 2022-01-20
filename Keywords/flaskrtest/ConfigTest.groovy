@@ -23,9 +23,6 @@ import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 import org.openqa.selenium.WebDriver
-
-import com.kazurayam.ks.webdriversupport.KSDriverTypeName
-import com.kazurayam.ks.webdriversupport.KSWebDriverFactory
 import com.kms.katalon.core.annotation.AfterTestCase
 import com.kms.katalon.core.annotation.AfterTestSuite
 import com.kms.katalon.core.annotation.BeforeTestCase
@@ -78,6 +75,7 @@ public class ConfigTest {
 		}
 	}
 
+	/*
 	static WebDriver browser(config_browser, config_wait_time) {
 		WebDriver driver
 		if (config_browser == 'chrome') {
@@ -88,4 +86,5 @@ public class ConfigTest {
 		}
 		return driver
 	}
+	*/
 }

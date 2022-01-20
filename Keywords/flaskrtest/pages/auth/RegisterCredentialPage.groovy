@@ -16,14 +16,14 @@ public class RegisterCredentialPage {
 	static final TestObject REGISTER_BUTTON = By.xpath('//input[@type="submit" and @value="Register"]')
 	static final TestObject LOGIN_ANCHOR    = By.xpath('//a[contains(text(), "Log In")]')
 	static final SeleniumBy DIV_FLASH       = SeleniumBy.xpath('//div[contains(@class, "flash")]')
-	
+
 	private WebDriver browser
 
 	RegisterCredentialPage(WebDriver browser) {
 		this.browser = browser
 	}
 
-	Boolean register_button_exists() {
+	public Boolean register_button_exists() {
 		DriverFactory.changeWebDriver(browser)
 		WebElement register_button = WebUI.findWebElement(REGISTER_BUTTON)
 		return register_button != null

@@ -11,6 +11,8 @@ import com.kms.katalon.core.testobject.TestObject
 import com.kms.katalon.core.webui.driver.DriverFactory
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
+import flaskrtest.data.User
+
 class IndexPage {
 
 	static final String URL = 'http://127.0.0.1:80/'
@@ -45,6 +47,11 @@ class IndexPage {
 		WebUI.navigateToUrl(URL)
 	}
 
+	void load(URL url) {
+		DriverFactory.changeWebDriver(browser)
+		WebUI.navigateToUrl(url.toExternalForm())
+	}
+
 	void open_register_page() {
 		DriverFactory.changeWebDriver(browser)
 		WebUI.click(REGISTER_ANCHOR)
@@ -53,6 +60,11 @@ class IndexPage {
 	void open_login_page() {
 		DriverFactory.changeWebDriver(browser)
 		WebUI.click(LOGIN_ANCHOR)
+	}
+
+	void click_logout() {
+		DriverFactory.changeWebDriver(browser)
+		WebUI.click(LOGOUT_ANCHOR)
 	}
 
 	Boolean app_header_exists() {
@@ -70,9 +82,20 @@ class IndexPage {
 		return WebUI.waitForElementPresent(LOGIN_ANCHOR, TIMEOUT)
 	}
 
+	Boolean logout_anchor_exists() {
+		DriverFactory.changeWebDriver(browser)
+		return WebUI.waitForElementPresent(LOGOUT_ANCHOR, TIMEOUT)
+	}
+
 	Boolean posts_header_exists() {
 		DriverFactory.changeWebDriver(browser)
 		return WebUI.waitForElementPresent(POSTS_HEADER, TIMEOUT)
+	}
+
+	Boolean nav_span_username_exists(String username) {
+		DriverFactory.changeWebDriver(browser)
+		TestObject tObj =
+				By.xpath("//nav/ul/li/span[text()='${username}']", ["username": username])
 	}
 
 	void open_create_post_page() {
@@ -136,6 +159,7 @@ class IndexPage {
 	}
 
 	Post get_post_by_postid(String postid) {
+		Objects.requireNonNull(postid)
 		DriverFactory.changeWebDriver(browser)
 		WebElement article = WebUI.findWebElement(POST_BY_POSTID(postid))
 		if (article != null) {
@@ -145,18 +169,26 @@ class IndexPage {
 		}
 	}
 
-	List<Post> get_posts_by(String username) {
-		Objects.requireNonNull(username)
-		if (username.length() == 0)
-			throw new IllegalArgumentException("username must not be empty")
+	List<Post> get_posts() {
+		DriverFactory.changeWebDriver(browser)
+		List<WebElement> articleElementList = WebUI.findWebElements(POSTS, TIMEOUT)
+		return articleElementList.stream()
+				.map({ webElement ->
+					new Post(webElement)
+				})
+				.collect(Collectors.toList())
+	}
+
+	List<Post> get_posts_by(User user) {
+		Objects.requireNonNull(user)
 		DriverFactory.changeWebDriver(browser)
 		List<WebElement> posts = WebUI.findWebElements(POSTS, TIMEOUT)
 		return posts.stream()
-				.filter({ webElement ->
-					webElement.getText().contains(username)
-				})
 				.map({ webElement ->
 					new Post(webElement)
+				})
+				.filter({ post ->
+					post.get_about().contains(user.toString())
 				})
 				.collect(Collectors.toList())
 	}

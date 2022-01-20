@@ -40,5 +40,4 @@ public class LogInPage {
 		DriverFactory.changeWebDriver(browser)
 		WebUI.click(LOGIN_BUTTON)
 	}
-	
 }

@@ -2,8 +2,11 @@ package flaskrtest.pages.blog
 
 import org.openqa.selenium.By as SeleniumBy
 import org.openqa.selenium.WebElement
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 /**
  * wraps an blog post page in the Flaskr web app.
@@ -22,10 +25,12 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
  */
 public class Post {
 
-	static final SeleniumBy TITLE = SeleniumBy.xpath('//header/div/h1')
-	static final SeleniumBy BODY  = SeleniumBy.xpath('//p[1]')
-	static final SeleniumBy EDIT  = SeleniumBy.xpath('//header/a')
-	static final SeleniumBy ABOUT = SeleniumBy.xpath('//header/div/div[contains(@class,"about")]')
+	private static Logger logger_ = LoggerFactory.getLogger(getClass())
+
+	static final SeleniumBy TITLE = SeleniumBy.xpath('header/div/h1')
+	static final SeleniumBy BODY  = SeleniumBy.xpath('p[1]')
+	static final SeleniumBy EDIT  = SeleniumBy.xpath('header/a')
+	static final SeleniumBy ABOUT = SeleniumBy.xpath('header/div/div[contains(@class,"about")]')
 
 	WebElement article
 
@@ -49,14 +54,32 @@ public class Post {
 	}
 
 	String get_postid() {
-		WebElement anchor = article.findElement(EDIT)
-		String href = anchor.getAttribute('href')
-		String postid = href.split('/')[1]
-		return (postid != null) ? postid : ''
+		List<WebElement> anchors = article.findElements(EDIT)
+		if (anchors.size() > 0) {
+			WebElement anchor = article.findElement(EDIT)
+			if (anchor != null) {
+				String href = anchor.getAttribute('href')   // something like "http://127.0.0.1/XX/update" where XX is an integer
+				URL link = new URL(href)
+				String postid = link.getPath().split('/')[1]
+				return (postid != null) ? postid : ''
+			} else {
+				return ''
+			}
+		} else {
+			return ''
+		}
 	}
 
 	Boolean about_text_contains(String part) {
 		String about = this.get_about()
 		return about.contains(part)
+	}
+
+	@Override
+	String toString() {
+		Map m = ["header":["title": get_title(), "about": get_about(), "id": get_postid()], "body": get_body()]
+		Gson gson = new GsonBuilder().setPrettyPrinting().create()
+		String json = gson.toJson(m)
+		return json
 	}
 }
