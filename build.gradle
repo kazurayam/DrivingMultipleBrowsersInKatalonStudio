@@ -4,7 +4,7 @@
 
 
 group = 'com.kazurayam'
-version = '0.1.0'
+version = '0.2.0'
 
 ext {
     AUTO_IMPORTED_JAR_PREFIX = 'AUTOIMPORTED_'
@@ -58,6 +58,5 @@ task drivers {
 	                AUTO_IMPORTED_JAR_PREFIX + s
 	                })
 	    }
-        downloadFile("https://github.com/kazurayam/WebDriverSupport4ks/releases/download/${webdriversupport4ksVersion}/webdriversupport4ks-${webdriversupport4ksVersion}.jar")
     }
 }
