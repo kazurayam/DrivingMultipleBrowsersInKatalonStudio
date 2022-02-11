@@ -4,11 +4,12 @@
 
 
 group = 'com.kazurayam'
-version = '0.2.0'
+version = '0.3.0'
 
 ext {
     AUTO_IMPORTED_JAR_PREFIX = 'AUTOIMPORTED_'
     junit4ksVersion = '1.6.1'
+    subprocessjVersion = '0.3.3'
 }
 
 repositories {
@@ -21,7 +22,8 @@ configurations {
 }
 
 dependencies {
-  myconf group: 'com.kazurayam', name: 'junit4ks', version: "${junit4ksVersion}"
+    myconf group: 'com.kazurayam', name: 'junit4ks', version: "${junit4ksVersion}"
+    myconf group: 'com.kazurayam', name: 'subprocessj', version: "${subprocessjVersion}"
 }
 
 // -----------------------------------------------------------------
@@ -52,7 +54,8 @@ task drivers {
 	            .from(project.getConfigurations().getByName("myconf"))
 	            .into("Drivers")
 	            .include(
-	                "**/junit4ks*.jar"
+                        "**/junit4ks*.jar",
+                        "**/subprocessj*.jar"
 	                )
 	            .rename({ s ->
 	                AUTO_IMPORTED_JAR_PREFIX + s
