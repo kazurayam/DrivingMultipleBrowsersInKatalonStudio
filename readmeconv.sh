@@ -2,15 +2,15 @@
 
 # Convert all the files with name ending with `*.adoc` into `*.md`.
 # `*.adoc` is an Asciidoc document file, `*.md` is a Mardown document file.
-# E.g, `index_.adoc` will be converted into `index_.md`
+# E.g, `readme_.adoc` will be converted into `readme_.md`
 # Except ones with `_` as prefix.
-# E.g, `_index.adoc` is NOT processed by this script, will be left unprocessed.
+# E.g, `_readme.adoc` is NOT processed by this script, will be left unprocessed.
 #
 # How to active this: in the command line, just type 
-# `> ./indexconv.sh`
+# `> ./readmeconv.sh`
 #
 # Can generate Table of content in the output *.md file by specifying `-t` option
-# `> ./indexconv.sh -t`
+# `> ./readmeconv.sh -t`
 
 requireTOC=false
 
@@ -42,20 +42,18 @@ find . -iname "*.adoc" -type f -maxdepth 1 -not -name "_*.adoc" | while read fna
     rm -f "$xml"
 done
 
-# if we find a index*.md (or index*.md), 
-# we rename all of them to a single index.md while overwriting,
+# if we find a readme*.md (or README*.md), 
+# we rename all of them to a single README.md while overwriting,
 # effectively the last wins.
-# E.g, if we have `index_.md`, it will be overwritten into `index.md`
-find . -iname "index*.md" -not -name "index.md" -type f -maxdepth 1 | while read fname; do
-    echo Renaming $fname to index.md
-    mv $fname index.md
+# E.g, if we have `readme_.md`, it will be overwritten into `README.md`
+find . -iname "readme*.md" -not -name "README.md" -type f -maxdepth 1 | while read fname; do
+    echo Renaming $fname to README.md
+    mv $fname README.md
 done
 
 
-# slightly modifies the generated index.md file
+# slightly modifies the generated README.md file
 #     - [Solution 1](#_solution_1)
 # will be translated to
 #     - [Solution 1](#solution-1)
-cat index.md | groovy ../mdTocFilter.groovy > temp.md
-cat temp.md > index.md
-rm temp.md
+java -jar ./MarkdownUtils-0.1.0.jar ./README.md

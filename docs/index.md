@@ -1,3 +1,24 @@
+-   [Flaskr Test in Katalon Studio](#flaskr-test-in-katalon-studio)
+    -   [Movie for demonstration](#movie-for-demonstration)
+    -   [Problem to solve](#problem-to-solve)
+    -   [Solution](#solution)
+        -   [opening browsers by WebDriver API](#opening-browsers-by-webdriver-api)
+        -   [informing Katalon Studio of browsers opened by WebDriver API](#informing-katalon-studio-of-browsers-opened-by-webdriver-api)
+        -   [Waiting for the page to load](#waiting-for-the-page-to-load)
+        -   [Magic spells for opening 2 browsers](#magic-spells-for-opening-2-browsers)
+    -   [Application Under Test at a glance](#application-under-test-at-a-glance)
+    -   [Solution described](#solution-described)
+        -   [Installing docker command](#installing-docker-command)
+        -   [Starting up Flaskr server at http://127.0.0.1/](#starting-up-flaskr-server-at-http127-0-0-1)
+        -   [Flaskr docker image](#flaskr-docker-image)
+    -   [Description of codes](#description-of-codes)
+        -   [Test Cases/flaskr/TC1\_open\_close](#test-casesflaskrtc1-open-close)
+        -   [Test Cases/flaskr/TC2\_register\_Alice\_then\_LogIn](#test-casesflaskrtc2-register-alice-then-login)
+        -   [Test Cases/flaskr/TC3\_Alice\_and\_Bob\_interact](#test-casesflaskrtc3-alice-and-bob-interact)
+        -   [Test Cases/POM/TC4\_Alice\_and\_Bob\_interact\_POM](#test-casespomtc4-alice-and-bob-interact-pom)
+    -   [Appendix](#appendix)
+        -   [Asciidoc → Markdown](#asciidoc-markdown)
+
 # Flaskr Test in Katalon Studio
 
 > Back to [FlaskrTestInKatalonStudio repository](https://github.com/kazurayam/FlaskrTestInKatalonStudio)
@@ -94,6 +115,48 @@ This code passes.
 ![capable](./images/analysis/3_capable_to_get_title.png)
 
 Now `WebUI.xxx` keywords can interact with the browser which was created by my script using `new ChromeDriver()` API.
+
+### Waiting for the page to load
+
+By a call `driver.navigate().to("http://127.0.0.1/")`, we can open a browser and let it navigate to the URL specified. But this call does NOT perform implicit wait for the page to load completely. If you want to ensure that the page has been loaded, you need to do it explicitly.
+
+There are several ways of implementing "wait for page to load". The following sample code shows how to use `WebUI.verifyElementPresent(TestObject, int timeout)` keyword.
+
+    // Test Cases/analysis/4_wait_for_the_page_to_load
+
+    import org.openqa.selenium.WebDriver
+    import org.openqa.selenium.chrome.ChromeDriver
+
+    import com.kms.katalon.core.model.FailureHandling
+    import com.kms.katalon.core.testobject.ConditionType
+    import com.kms.katalon.core.testobject.TestObject
+    import com.kms.katalon.core.webui.driver.DriverFactory
+    import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+
+    String chrome_executable_path = DriverFactory.getChromeDriverPath()
+    System.setProperty('webdriver.chrome.driver', chrome_executable_path)
+
+    WebDriver browser = new ChromeDriver()
+    browser.navigate().to('http://127.0.0.1/')
+
+    // i can let WebUI.xxx keywords know the WebDriver instance created by my script
+    DriverFactory.changeWebDriver(browser)
+
+    // wait for the page to load
+    TestObject tObj = makeTestObject("site_name", "//h1[text()='Flaskr']")
+    //TestObject tObj = makeTestObject("site_name", "//h1[text()='FlaskR']")   // this will fail
+    WebUI.verifyElementPresent(tObj, 5, FailureHandling.STOP_ON_FAILURE)
+
+    WebUI.closeBrowser()
+
+    // helper method to create an instance of TestObject
+    TestObject makeTestObject(String id, String xpath) {
+        TestObject tObj = new TestObject(id)
+        tObj.addProperty("xpath", ConditionType.EQUALS, xpath)
+        return tObj
+    }
+
+By the way, as you know, the `WebUI.openBrowser(String url)` keyword does implicit wait. How is its implicit wait implemented? --- You can find the source of the keyword at [OpenBrowserKeyword.groovy](https://github.com/katalon-studio/katalon-studio-testing-framework/blob/master/Include/scripts/groovy/com/kms/katalon/core/webui/keyword/builtin/OpenBrowserKeyword.groovy). You can start reading the source and find its internal implementation. I think that explicit wait by `WebUI.verifyElementPresent()` keyword is easier in this case to implement, than trying to imitate the implicit wait by `WebUI.openBrowser()` keyword.
 
 ### Magic spells for opening 2 browsers
 
@@ -250,9 +313,10 @@ This script does a bit more than `TC1_openn_close`. It interacts with the "Flask
 
     import com.kms.katalon.core.util.KeywordUtil
     import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+    import com.kazurayam.uitestjava.flaskr.pom.data.User
 
-    String username = 'Alice'
-    String password = 'ThisIsNotAPassword'
+    String username = User.Alice.toString()
+    String password = User.Alice.getPassword()
 
     WebUI.openBrowser('')
     WebUI.navigateToUrl('http://127.0.0.1/')

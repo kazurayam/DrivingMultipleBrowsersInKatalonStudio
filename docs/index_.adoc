@@ -75,6 +75,20 @@ image:./images/analysis/3_capable_to_get_title.png[capable]
 
 Now `WebUI.xxx` keywords can interact with the browser which was created by my script using `new ChromeDriver()` API.
 
+=== Waiting for the page to load
+
+By a call `driver.navigate().to("http://127.0.0.1/")`, we can open a browser and let it navigate to the URL specified. But this call does NOT perform implicit wait for the page to load completely. If you want to ensure that the page has been loaded, you need to do it explicitly. 
+
+There are several ways of implementing "wait for page to load". The following sample code shows how to use `WebUI.verifyElementPresent(TestObject, int timeout)` keyword.
+
+[source, groovy]
+----
+include::../Scripts/analysis/4_wait_for_the_page_to_load/Script1653093221467.groovy[]
+----
+
+By the way, as you know, the `WebUI.openBrowser(String url)` keyword does implicit wait. How is its implicit wait implemented? --- You can find the source of the keyword at link:https://github.com/katalon-studio/katalon-studio-testing-framework/blob/master/Include/scripts/groovy/com/kms/katalon/core/webui/keyword/builtin/OpenBrowserKeyword.groovy[OpenBrowserKeyword.groovy]. You can start reading the source and find its internal implementation. I think that explicit wait by `WebUI.verifyElementPresent()` keyword is easier in this case to implement, than trying to imitate the implicit wait by `WebUI.openBrowser()` keyword.
+
+
 === Magic spells for opening 2 browsers
 
 In short, the following is the magic spells you need to know.
